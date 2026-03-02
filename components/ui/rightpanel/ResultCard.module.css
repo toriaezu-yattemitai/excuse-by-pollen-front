@@ -1,0 +1,8 @@
+.circularProgress {
+    background: conic-gradient(
+        #10b981 0deg,
+        #10b981 var(--progress, 0deg),
+        #e5e7eb var(--progress, 0deg),
+        #e5e7eb 360deg
+    );
+}
