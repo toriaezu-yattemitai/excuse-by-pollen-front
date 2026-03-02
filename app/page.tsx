@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Header from "@/components/ui/Header";
 import LeftPanel from "@/components/ui/LeftPanel";
 import RightPanel from "@/components/ui/RightPanel";
 import type { GenerateRequest, GenerateResponse } from "@/types/api";
@@ -48,8 +47,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      <Header title="花粉エクスキューズジェネレーター" />
-
       {/* メインコンテンツエリア：左右2カラムレイアウト */}
       <main className="flex-1 container mx-auto p-4 lg:p-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-full">

@@ -46,57 +46,36 @@ export default function LeftPanel({ onGenerate, isLoading }: LeftPanelProps) {
       <div className="flex-1 space-y-6 overflow-y-auto">
         {/* 相手入力 */}
         <div className="space-y-2">
-          <TextBoxWithLabel
-            label="相手"
-            placeholder="例：上司、先生"
-            value={target}
+          <TextBoxWithLabel label="相手" placeholder="例：上司、先生" value={target} disabled={isLoading}
             onChange={(e) => setTarget(e.target.value)}
-            disabled={isLoading}
           />
         </div>
 
         {/* 症状入力 */}
         <div className="space-y-2">
-          <TextBoxWithLabel
-            label="症状"
-            placeholder="例：鼻水が止まらない"
-            value={symptom}
+          <TextBoxWithLabel label="症状" placeholder="例：鼻水が止まらない" value={symptom} disabled={isLoading}
             onChange={(e) => setSymptom(e.target.value)}
-            disabled={isLoading}
           />
         </div>
 
         {/* 状況入力 */}
         <div className="space-y-2">
-          <TextBoxWithLabel
-            label="状況"
-            placeholder="例：大事な会議前"
-            value={situation}
+          <TextBoxWithLabel label="状況" placeholder="例：大事な会議前" value={situation} disabled={isLoading}
             onChange={(e) => setSituation(e.target.value)}
-            disabled={isLoading}
           />
         </div>
 
         {/* 花粉症レベル */}
         <div className="space-y-4 pt-2">
-          <NumberSliderWithLabel
-            label="花粉症レベル"
-            min={1}
-            max={5}
-            step={1}
-            value={level}
+          <NumberSliderWithLabel label="花粉症レベル" min={1} max={5} step={1} value={level} disabled={isLoading}
             onChange={(e) => setLevel(parseInt(e.target.value))}
-            disabled={isLoading}
           />
         </div>
 
         {/* ニュアンス/文体 */}
         <div className="space-y-2">
-          <SelectBoxWithLabel
-            label="ニュアンス/文体"
-            value={nuance}
+          <SelectBoxWithLabel label="ニュアンス/文体" value={nuance} disabled={isLoading}
             onChange={(e) => setNuance(e.target.value)}
-            disabled={isLoading}
           >
             <option value="ポエム風">ポエム風</option>
             <option value="ビジネスライク">ビジネスライク</option>
