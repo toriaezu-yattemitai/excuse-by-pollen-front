@@ -10,13 +10,14 @@ type SelectBoxWithLabelProps = {
     value: string,
     label: string,
     children: ReactNode,
+    disabled?: boolean,
 };
 
-export default function SelectBoxWithLabel({ onChange, value, label, children }: SelectBoxWithLabelProps) {
+export default function SelectBoxWithLabel({ onChange, value, label, children, disabled = false }: SelectBoxWithLabelProps) {
     return (
         <>
             <Label>{label}</Label>
-            <SelectBox onChange={onChange} value={value}>
+            <SelectBox onChange={onChange} value={value} disabled={disabled}>
                 {children}
             </SelectBox>
         </>
