@@ -12,9 +12,10 @@ type NumberSliderWithLabelProps = {
     max: number,
     step: number,
     label: string,
+    disabled?: boolean,
 };
 
-export default function NumberSliderWithLabel({ onChange, min, max, step, value, label }: NumberSliderWithLabelProps) {
+export default function NumberSliderWithLabel({ onChange, min, max, step, value, label, disabled = false }: NumberSliderWithLabelProps) {
     return (
         <>
             <div className="flex justify-between items-center">
@@ -23,7 +24,7 @@ export default function NumberSliderWithLabel({ onChange, min, max, step, value,
                     {value}
                 </div>
             </div>
-            <NumberSlider onChange={onChange} min={min} max={max} step={step} value={value} />
+            <NumberSlider onChange={onChange} min={min} max={max} step={step} value={value} disabled={disabled} />
         </>
     );
 }

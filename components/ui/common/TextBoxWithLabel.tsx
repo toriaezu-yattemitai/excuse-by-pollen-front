@@ -10,13 +10,14 @@ type TextBoxWithLabelProps = {
     onChange: (e: ChangeEvent<HTMLInputElement>) => void,
     placeholder: string | undefined,
     value: string | undefined,
+    disabled?: boolean,
 };
 
-export default function TextBoxWithLabel({ label, onChange, placeholder = "", value = "" }: TextBoxWithLabelProps) {
+export default function TextBoxWithLabel({ label, onChange, placeholder = "", value = "", disabled = false }: TextBoxWithLabelProps) {
     return (
         <>
             <Label>{label}</Label>
-            <TextBox onChange={onChange} placeholder={placeholder} value={value} />
+            <TextBox onChange={onChange} placeholder={placeholder} value={value} disabled={disabled} />
         </>
         
     );
