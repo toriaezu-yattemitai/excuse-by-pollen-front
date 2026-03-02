@@ -4,9 +4,9 @@ import { ReactNode } from "react";
  * ボタンの部品コンポーネント
  */
 type ButtonProps = {
-    onClick: () => void;
-    children: ReactNode;
-    color?: "black" | "green" | "blue" | "red" | "yellow";
+    onClick: () => void,
+    color?: "black" | "green" | "blue" | "red" | "yellow",
+    children: ReactNode,
 };
 
 const colorClass: Record<string, string> = {
@@ -19,7 +19,7 @@ const colorClass: Record<string, string> = {
 
 export default function Button({ onClick, children, color = "black" }: ButtonProps) {
     return (
-        <button type="button" onClick={onClick} className={`px-4 py-2 focus:outline-none cursor-pointer transition-all duration-300 ease-in-out rounded-3xl flex items-center gap-2 ${colorClass[color]}`}>
+        <button type="button" onClick={onClick} className={`w-full px-4 py-3 focus:outline-none cursor-pointer transition-all duration-300 ease-in-out rounded-xl flex items-center gap-2 justify-center ${colorClass[color]}`}>
             {children}
         </button>
     );
