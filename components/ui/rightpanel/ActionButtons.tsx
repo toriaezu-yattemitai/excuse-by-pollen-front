@@ -17,7 +17,7 @@ export default function ActionButtons() {
     };
 
     return (
-        <>
+        <div className="pt-4 mt-4 border-t border-gray-100">
             <div className={"flex flex-row gap-2"}>
                 <Button color="green" onClick={() => {
                     console.log("もっと盛る");
@@ -25,8 +25,8 @@ export default function ActionButtons() {
                     <FontAwesomeIcon icon={faArrowUp} />
                     もっと盛る
                 </Button>
-                <Button onClick={handleShare}><FontAwesomeIcon icon={faXTwitter} />Xで共有する</Button>
+                <Button onClick={handleShare}><FontAwesomeIcon icon={faXTwitter} />Xでシェア</Button>
             </div>
-        </>
+        </div>
     );
 }
