@@ -2,18 +2,19 @@
 
 import ActionButtons from "./rightpanel/ActionButtons";
 import ResultCard from "./rightpanel/ResultCard";
-import type { GenerateResponse } from "@/types/api";
+import type { GenerateResponse, RetryRequest } from "@/types/api";
 
 type RightPanelProps = {
-  result: GenerateResponse | null;
-  isLoading: boolean;
-  error: string | null;
+  onRetry: (retryInstruction: string) => void,
+  result: GenerateResponse | null,
+  isLoading: boolean,
+  error: string | null,
 };
 
 /**
  * 右側の生成後のパネルコンポーネント
  */
-export default function RightPanel({ result, isLoading, error }: RightPanelProps) {
+export default function RightPanel({ onRetry, result, isLoading, error }: RightPanelProps) {
   return (
     <div className="flex flex-col h-full bg-white m-1 p-6 rounded-xl border border-blue-100">
       {isLoading && (
@@ -37,8 +38,7 @@ export default function RightPanel({ result, isLoading, error }: RightPanelProps
       {!isLoading && !error && !result && (
         <div className="flex-1 flex items-center justify-center">
           <div className="text-center text-gray-400">
-            <p>左側のフォームから</p>
-            <p>言い訳を生成してください</p>
+            <p>ここには生成後、結果が表示されます</p>
           </div>
         </div>
       )}
@@ -46,7 +46,7 @@ export default function RightPanel({ result, isLoading, error }: RightPanelProps
       {!isLoading && !error && result && (
         <>
           <ResultCard text={result.excuse} score={result.score} />
-          <ActionButtons />
+          <ActionButtons onRetry={onRetry} />
         </>
       )}
     </div>

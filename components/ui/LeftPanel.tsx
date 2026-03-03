@@ -8,8 +8,8 @@ import SelectBoxWithLabel from "./common/SelectBoxWithLabel";
 import type { GenerateRequest } from "@/types/api";
 
 type LeftPanelProps = {
-  onGenerate: (inputs: GenerateRequest["inputs"]) => void;
-  isLoading: boolean;
+  onGenerate: (inputs: GenerateRequest["inputs"]) => void,
+  isLoading: boolean,
 };
 
 /**
