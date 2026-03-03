@@ -24,14 +24,14 @@ export default function ActionButtons({onRetry}: {onRetry: (retryInstruction: st
     };
 
     const handleRetrySubmit = () => {
-        setRetryInstruction(retryInstruction.trim());
+        const trimmedInstruction = retryInstruction.trim();
 
-        if (!retryInstruction) {
+        if (!trimmedInstruction) {
             alert("追加の指示を入力してください");
             return;
         }
 
-        onRetry(retryInstruction);
+        onRetry(trimmedInstruction);
 
         setShowRetryInput(false);
         setRetryInstruction("");
