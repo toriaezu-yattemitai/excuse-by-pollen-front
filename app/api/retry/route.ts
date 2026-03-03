@@ -34,10 +34,10 @@ export async function POST(request: NextRequest) {
     // モックとして2秒待機（API呼び出しをシミュレート）
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
-    const { target, symptoms, situation, level, nuance } = body.previous_context;
+    const { target, symptoms, situation, level } = body.previous_context;
     // const instruction = body.retry_instruction; // モックでは使わない
 
-    // retry_instructionに応じたバリエーション
+    // 現在は固定テンプレートからランダムに選択（retry_instruction には未対応）
     const excuseTemplates = [
       `${target}へ\n\n${situation}において、私の身に花粉症という避けがたい試練が訪れました。${symptoms}という症状に見舞われ、まるで春の嵐に翻弄される桜の花びらのように、私の集中力は静かに、しかし確実に散りゆいていったのです。視界は霞み、思考は断続的に中断され、自らの意思とは無関係に身体が反乱を起こす始末でした。\n\nこの春の呪いとも言うべき花粉症レベル${level}の猛威の前では、いかなる英雄であろうと膝を屈するほかありません。抗う術を講じたものの、その効果は限定的であり、万全とは程遠い状態であったことを深くお詫び申し上げます。何卒、この季節特有の不可抗力としてご理解とご慈悲を賜りたく存じます。`,
 
