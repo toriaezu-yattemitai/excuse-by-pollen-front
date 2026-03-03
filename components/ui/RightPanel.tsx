@@ -2,7 +2,7 @@
 
 import ActionButtons from "./rightpanel/ActionButtons";
 import ResultCard from "./rightpanel/ResultCard";
-import type { GenerateResponse, RetryRequest } from "@/types/api";
+import type { GenerateResponse } from "@/types/api";
 
 type RightPanelProps = {
   onRetry: (retryInstruction: string) => void,
