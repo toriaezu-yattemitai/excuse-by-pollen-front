@@ -2,7 +2,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "../common/Button";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
-import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { faTurnUp } from "@fortawesome/free-solid-svg-icons";
 
 /**
  * もっと盛る、SNS共有ボタン
@@ -22,10 +22,12 @@ export default function ActionButtons() {
                 <Button color="green" onClick={() => {
                     console.log("もっと盛る");
                 }}>
-                    <FontAwesomeIcon icon={faArrowUp} />
+                    <FontAwesomeIcon icon={faTurnUp} />
                     もっと盛る
                 </Button>
-                <Button onClick={handleShare}><FontAwesomeIcon icon={faXTwitter} />Xでシェア</Button>
+                <Button onClick={handleShare}>
+                    <FontAwesomeIcon icon={faXTwitter} />Xでシェア
+                </Button>
             </div>
         </div>
     );
