@@ -1,11 +1,13 @@
 "use client";
 
+import Button from "./common/Button";
 import ActionButtons from "./rightpanel/ActionButtons";
 import ResultCard from "./rightpanel/ResultCard";
 import type { GenerateResponse } from "@/types/api";
 
 type RightPanelProps = {
   onRetry: (retryInstruction: string) => void,
+  onResend: () => void,
   result: GenerateResponse | null,
   isLoading: boolean,
   error: string | null,
@@ -14,7 +16,7 @@ type RightPanelProps = {
 /**
  * 右側の生成後のパネルコンポーネント
  */
-export default function RightPanel({ onRetry, result, isLoading, error }: RightPanelProps) {
+export default function RightPanel({ onRetry, onResend, result, isLoading, error }: RightPanelProps) {
   return (
     <div className="flex flex-col h-full bg-white m-1 p-6 rounded-xl border border-blue-100">
       {isLoading && (
@@ -31,6 +33,7 @@ export default function RightPanel({ onRetry, result, isLoading, error }: RightP
           <div className="text-center space-y-2 text-red-600">
             <p className="font-bold">エラーが発生しました</p>
             <p className="text-sm">{error}</p>
+            <Button color="blue" onClick={onResend}>再送する</Button>
           </div>
         </div>
       )}
