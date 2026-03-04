@@ -1,6 +1,10 @@
 import { useState } from "react";
 import type { GenerateRequest, GenerateResponse, RetryRequest } from "@/types/api";
 
+// const API_URI = "/api/"; // モック環境
+// const API_URI = "http://localhost:8000/"; // ローカル環境
+const API_URI = "https://excuse-by-pollen-back.onrender.com/"; // 本番環境
+
 export function useGenerate() {
   const [result, setResult] = useState<GenerateResponse | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -16,7 +20,7 @@ export function useGenerate() {
         options: { max_chars: 220 },
       };
 
-      const response = await fetch("/api/generate", {
+      const response = await fetch(API_URI + "generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -53,7 +57,7 @@ export function useGenerate() {
         retry_instruction: retryInstruction,
       };
 
-      const response = await fetch("/api/retry", {
+      const response = await fetch(API_URI + "retry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
