@@ -5,7 +5,7 @@ import RightPanel from "@/components/ui/RightPanel";
 import { useGenerate } from "@/hooks/useGenerate";
 
 export default function Home() {
-  const { result, isLoading, error, handleGenerate, handleRetry } = useGenerate();
+  const { result, isLoading, error, handleGenerate, handleRetry, handleResend } = useGenerate();
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
@@ -22,7 +22,7 @@ export default function Home() {
 
           {/* 右パネル */}
           <div className="h-full">
-            <RightPanel onRetry={handleRetry} isLoading={isLoading} result={result}  error={error} />
+            <RightPanel onRetry={handleRetry} onResend={handleResend} isLoading={isLoading} result={result}  error={error} />
           </div>
         </div>
       </main>

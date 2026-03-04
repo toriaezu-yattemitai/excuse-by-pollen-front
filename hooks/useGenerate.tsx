@@ -10,9 +10,19 @@ export function useGenerate() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // エラー用に再送のための最後のリクエストをここに格納しておく
+  const [lastRequest, setLastRequest] = useState<
+    {
+      type: 'generate' | 'retry', 
+      data: GenerateRequest["inputs"] | string,
+    }
+    | null>(null);
+
+  // 言い訳を生成する
   const handleGenerate = async (inputs: GenerateRequest["inputs"]) => {
     setIsLoading(true);
     setError(null);
+    setLastRequest({ type: 'generate', data: inputs });
 
     try {
       const payload: GenerateRequest = {
@@ -41,6 +51,7 @@ export function useGenerate() {
     }
   };
 
+  // もっと盛る
   const handleRetry = async (retryInstruction: string) => {
     if (!result) {
       setError("再生成できる結果がありません");
@@ -49,6 +60,7 @@ export function useGenerate() {
 
     setIsLoading(true);
     setError(null);
+    setLastRequest({ type: 'retry', data: retryInstruction });
 
     try {
       const payload: RetryRequest = {
@@ -78,5 +90,20 @@ export function useGenerate() {
     }
   };
 
-  return { result, isLoading, error, handleGenerate, handleRetry };
+  // 再送する
+  const handleResend = () => {
+    if (!lastRequest) return;
+
+    if (lastRequest.type === 'generate') {
+      handleGenerate(lastRequest.data as GenerateRequest["inputs"]);
+      return;
+    }
+    
+    if (lastRequest.type === 'retry') {
+      handleRetry(lastRequest.data as string);
+      return;
+    }
+  };
+
+  return { result, isLoading, error, handleGenerate, handleRetry, handleResend };
 }
