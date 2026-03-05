@@ -1,11 +1,15 @@
 "use client";
 
+import BottomPanel from "@/components/ui/BottomPanel";
 import LeftPanel from "@/components/ui/LeftPanel";
 import RightPanel from "@/components/ui/RightPanel";
 import { useGenerate } from "@/hooks/useGenerate";
+import { useState } from "react";
 
 export default function Home() {
   const { result, isLoading, error, handleGenerate, handleRetry, handleResend } = useGenerate();
+
+  const [showBottomPanel, setShowBottomPanel] = useState(false);
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
@@ -25,6 +29,9 @@ export default function Home() {
             <RightPanel onRetry={handleRetry} onResend={handleResend} isLoading={isLoading} result={result}  error={error} />
           </div>
         </div>
+
+        {/* 下部パネル */}
+        {showBottomPanel && <BottomPanel />}
       </main>
     </div>
   );
