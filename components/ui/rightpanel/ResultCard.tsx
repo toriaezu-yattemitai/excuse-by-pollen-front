@@ -1,21 +1,16 @@
 import { CSSProperties } from "react";
 import styles from "./ResultCard.module.css";
 import { GenerateResponse } from "@/types/api";
-
-// スコアに基づいて絵文字をつくる (それぞれの絵文字はとりあえず仮)
-function getScoreEmoji(score: number): string {
-  if (score >= 90) return "🌟";
-  if (score >= 75) return "✨";
-  if (score >= 60) return "👍";
-  if (score >= 40) return "😅";
-  return "💧";
-}
+import getScoreEmoji from "@/app/utils/ScoreEmoji";
 
 /**
  * 生成結果の表示カード
  */
 export default function ResultCard({ result }: {
-  result: GenerateResponse
+  result: GenerateResponse | {
+    excuse: string,
+    score: number,
+  }
 }) {
   const progress = (result.score / 100) * 360;
 
