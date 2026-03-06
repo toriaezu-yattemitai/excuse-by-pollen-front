@@ -34,7 +34,7 @@ export default function RightPanel({ onRetry, onResend, result, isLoading, error
       {!isLoading && !error && result && (
         <>
           <ResultCard result={result} />
-          <ActionButtons onRetry={onRetry} />
+          <ActionButtons onRetry={onRetry} result={result} />
         </>
       )}
     </div>

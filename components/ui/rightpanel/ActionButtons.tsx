@@ -2,21 +2,18 @@
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "../common/Button";
-import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faTurnUp } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import TextBoxWithLabel from "../common/TextBoxWithLabel";
+import ShareButton from "./button/ShareButton";
+import { GenerateResponse } from "@/types/api";
 
 /**
  * もっと盛る、SNS共有ボタン
  */
-export default function ActionButtons({onRetry}: {onRetry: (retryInstruction: string) => void}) {
+export default function ActionButtons({onRetry, result}: {onRetry: (retryInstruction: string) => void, result: GenerateResponse}) {
     const [showRetryInput, setShowRetryInput] = useState(false);
     const [retryInstruction, setRetryInstruction] = useState("");
-
-
-    const shareText = "花粉言い訳ジェネレーターで生成した結果をシェア！ #花粉エクスキューズジェネレーター";
-    const shareUrl = "https://excuse-by-pollen.vercel.app/";
 
     const handleRetry = () => {
         if (!showRetryInput) {
@@ -39,12 +36,6 @@ export default function ActionButtons({onRetry}: {onRetry: (retryInstruction: st
         setRetryInstruction("");
     };
 
-
-    const handleShare = () => {
-        const url = `https://x.com/intent/post?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
-        window.open(url, "_blank");
-    };
-
     return (
         <div className="pt-4 mt-4 border-t border-gray-100">
             <div className={"flex flex-col min-[380px]:flex-row gap-2"}>
@@ -52,9 +43,7 @@ export default function ActionButtons({onRetry}: {onRetry: (retryInstruction: st
                     <FontAwesomeIcon icon={faTurnUp} />
                     もっと盛る
                 </Button>
-                <Button onClick={handleShare}>
-                    <FontAwesomeIcon icon={faXTwitter} />Xでシェア
-                </Button>
+                <ShareButton result={result} />
             </div>
             
             {/* 入力欄（もっと盛るボタンを押したら表示） */}
