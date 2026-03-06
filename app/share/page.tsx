@@ -3,9 +3,11 @@ import { Metadata } from "next";
 import TopButton from "./TopButton";
 
 export async function generateMetadata({ searchParams }: { searchParams: { text?: string; score?: string } }): Promise<Metadata> {
+  const params = await searchParams;
+  
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://excuse-by-pollen.vercel.app';
-  const text = searchParams.text || '';
-  const score = searchParams.score || '0';
+  const text = params.text || '';
+  const score = params.score || '0';
   const ogImageUrl = `${baseUrl}/api/ogp-image?text=${encodeURIComponent(text)}&score=${score}`;
   
   return {
