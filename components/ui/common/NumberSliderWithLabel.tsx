@@ -18,7 +18,7 @@ type NumberSliderWithLabelProps = {
 
 export default function NumberSliderWithLabel({ onChange, id, min, max, step, value, label, disabled = false }: NumberSliderWithLabelProps) {
     const generatedId = useId();
-    id = id || generatedId; // idが指定サれていない場合はuseId()から利用する
+    id = id || generatedId; // idが指定されていない場合はuseId()から利用する
 
     return (
         <>

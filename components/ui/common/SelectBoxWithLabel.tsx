@@ -16,7 +16,7 @@ type SelectBoxWithLabelProps = {
 
 export default function SelectBoxWithLabel({ id, onChange, value, label, children, disabled = false }: SelectBoxWithLabelProps) {
     const generatedId = useId();
-    id = id || generatedId; // idが指定サれていない場合はuseId()から利用する
+    id = id || generatedId; // idが指定されていない場合はuseId()から利用する
 
     return (
         <>

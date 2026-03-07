@@ -15,7 +15,7 @@ type Props = {
 
 export default function CheckBoxWithLabel({ id, onChange, label, checked = false, disabled = false }: Props) {
     const generatedId = useId();
-    id = id || generatedId; // idが指定サれていない場合はuseId()から利用する
+    id = id || generatedId; // idが指定されていない場合はuseId()から利用する
 
     return (
         <>

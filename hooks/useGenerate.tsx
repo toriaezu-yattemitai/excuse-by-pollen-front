@@ -1,9 +1,9 @@
 import { useState } from "react";
 import type { GenerateRequest, GenerateResponse, RetryRequest } from "@/types/api";
 
-// const API_URI = "/api/"; // モック環境
+const API_URI = "/api/"; // モック環境
 // const API_URI = "http://localhost:8000/"; // ローカル環境
-const API_URI = "https://excuse-by-pollen-back.onrender.com/"; // 本番環境
+// const API_URI = "https://excuse-by-pollen-back.onrender.com/"; // 本番環境
 
 export function useGenerate() {
   const [result, setResult] = useState<GenerateResponse | null>(null);

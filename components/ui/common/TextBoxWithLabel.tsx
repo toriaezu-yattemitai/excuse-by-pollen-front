@@ -16,7 +16,7 @@ type TextBoxWithLabelProps = {
 
 export default function TextBoxWithLabel({ id, label, onChange, placeholder = "", value = "", disabled = false }: TextBoxWithLabelProps) {
     const generatedId = useId();
-    id = id || generatedId; // idが指定サれていない場合はuseId()から利用する
+    id = id || generatedId; // idが指定されていない場合はuseId()から利用する
 
     return (
         <>
