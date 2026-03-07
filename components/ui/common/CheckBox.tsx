@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactNode } from "react";
+import { ChangeEvent } from "react";
 
 /**
  * チェックボックスの部品コンポーネント
