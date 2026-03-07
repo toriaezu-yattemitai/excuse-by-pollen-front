@@ -1,6 +1,8 @@
 "use client";
 
+import convertBadges from "@/app/utils/BadgeUtil";
 import ActionButtons from "./rightpanel/ActionButtons";
+import Badges from "./rightpanel/Badges";
 import ErrorSection from "./rightpanel/ErrorSection";
 import InitialSection from "./rightpanel/InitialSection";
 import LoadingSection from "./rightpanel/LoadingSection";
@@ -34,6 +36,7 @@ export default function RightPanel({ onRetry, onResend, result, isLoading, error
       {!isLoading && !error && result && (
         <>
           <ResultCard result={result} />
+          {result.options?.badges && <Badges badges={convertBadges(result.options.badges)} />}
           <ActionButtons onRetry={onRetry} result={result} />
         </>
       )}
