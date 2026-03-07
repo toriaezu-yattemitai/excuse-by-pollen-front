@@ -8,8 +8,43 @@ import SelectBoxWithLabel from "./common/SelectBoxWithLabel";
 import type { GenerateRequest } from "@/types/api";
 
 type LeftPanelProps = {
-  onGenerate: (inputs: GenerateRequest["inputs"]) => void,
+  onGenerate: (inputs: GenerateRequest["inputs"], options?: Partial<GenerateRequest["options"]>) => void,
   isLoading: boolean,
+};
+
+/**
+ * ブラウザから現在位置（緯度・経度）を取得する
+ */
+const getCurrentLocation = (): Promise<{ latitude: number; longitude: number } | null> => {
+  return new Promise((resolve) => {
+    if (!navigator.geolocation) {
+      alert("お使いのブラウザは位置情報に対応していません。");
+      resolve(null);
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        resolve({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        });
+      },
+      (error) => {
+        let message = "位置情報の取得に失敗しました。\n";
+        if (error.code === error.PERMISSION_DENIED) {
+          message += "位置情報へのアクセスが拒否されました。";
+        } else if (error.code === error.TIMEOUT) {
+          message += "位置情報の取得がタイムアウトしました。";
+        } else {
+          message += "位置情報を取得できませんでした。";
+        }
+        alert(message + "\n\n位置情報なしで生成を続けます。");
+        resolve(null);
+      },
+      { timeout: 10000, enableHighAccuracy: false, maximumAge: 60000 }
+    );
+  });
 };
 
 /**
@@ -23,11 +58,33 @@ export default function LeftPanel({ onGenerate, isLoading }: LeftPanelProps) {
   const [nuance, setNuance] = useState("ポエム風");
   const [useLocation, setUseLocation] = useState(false);
 
-  const handleSubmit = () => {
+  /**
+   * 位置情報チェックボックスの変更ハンドル
+   */
+  const handleLocationCheckChange = async (checked: boolean) => {
+    if (checked) {
+      // チェックされたら、位置情報の許可を求める
+      const location = await getCurrentLocation();
+      if (location) {
+        // 許可が得られた場合のみチェックをONにする
+        setUseLocation(true);
+        return;
+      }
+    }
+    setUseLocation(false);
+  };
+
+  const handleSubmit = async () => {
     // バリデーション
     if (!symptom.trim()) {
       alert("症状を入力してください");
       return;
+    }
+
+    // 位置情報の取得（チェックがONの場合のみ）
+    let locationData: { latitude: number; longitude: number } | null = null;
+    if (useLocation) {
+      locationData = await getCurrentLocation();
     }
 
     // API送信用のデータを作成
@@ -39,7 +96,13 @@ export default function LeftPanel({ onGenerate, isLoading }: LeftPanelProps) {
       nuance: nuance || null,
     };
 
-    onGenerate(inputs);
+    // options の組み立て（location があれば含める）
+    const options: Partial<GenerateRequest["options"]> = {};
+    if (locationData) {
+      options.location = locationData;
+    }
+
+    onGenerate(inputs, options);
   };
 
   return (
@@ -93,7 +156,7 @@ export default function LeftPanel({ onGenerate, isLoading }: LeftPanelProps) {
               type="checkbox"
               id="use-location"
               checked={useLocation}
-              onChange={(e) => setUseLocation(e.target.checked)}
+              onChange={(e) => handleLocationCheckChange(e.target.checked)}
               disabled={isLoading}
               className="mt-1 h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-2 focus:ring-blue-500 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed"
             />
