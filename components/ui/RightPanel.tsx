@@ -3,13 +3,13 @@
 import convertBadges from "@/app/utils/BadgeUtil";
 import ActionButtons from "./rightpanel/ActionButtons";
 import Badges from "./rightpanel/Badges";
-import ErrorSection from "./rightpanel/ErrorSection";
-import InitialSection from "./rightpanel/InitialSection";
-import LoadingSection from "./rightpanel/LoadingSection";
+import ErrorSection from "./rightpanel/section/ErrorSection";
+import InitialSection from "./rightpanel/section/InitialSection";
+import LoadingSection from "./rightpanel/section/LoadingSection";
 import ResultCard from "./rightpanel/ResultCard";
 import type { GenerateResponse } from "@/types/api";
 
-type RightPanelProps = {
+type Props = {
   onRetry: (retryInstruction: string) => void,
   onResend: () => void,
   result: GenerateResponse | null,
@@ -20,7 +20,7 @@ type RightPanelProps = {
 /**
  * 右側のパネルコンポーネント
  */
-export default function RightPanel({ onRetry, onResend, result, isLoading, error }: RightPanelProps) {
+export default function RightPanel({ onRetry, onResend, result, isLoading, error }: Props) {
   return (
     <div className="flex flex-col h-full bg-white m-1 p-6 rounded-xl border border-blue-100">
       { /* 生成中 */ }
