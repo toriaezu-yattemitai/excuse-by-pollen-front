@@ -5,7 +5,7 @@ import { ReactNode } from "react";
  */
 type ButtonProps = {
     id?: string,
-    onClick?: () => void,
+    onClick: () => void,
     color?: "black" | "green" | "blue" | "red" | "yellow",
     disabled?: boolean,
     children: ReactNode,
