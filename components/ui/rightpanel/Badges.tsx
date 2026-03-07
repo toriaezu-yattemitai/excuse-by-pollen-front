@@ -9,7 +9,7 @@ export default function Badges({badges}: {badges: Record<string, string>}) {
         <div className="pt-4 mt-4 flex gap-2 items-start flex-wrap">
             {badges && Object.entries(badges).map(([key, value]) => {
                 return (
-                    <Badge key={key}>{value}</Badge>
+                    <Badge key={key} color="yellow">{value}</Badge>
                 )
             })}
         </div>
