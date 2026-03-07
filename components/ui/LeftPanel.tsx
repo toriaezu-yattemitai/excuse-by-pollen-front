@@ -95,7 +95,7 @@ export default function LeftPanel({ onGenerate, isLoading }: LeftPanelProps) {
               checked={useLocation}
               onChange={(e) => setUseLocation(e.target.checked)}
               disabled={isLoading}
-              className="mt-1 h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-2 focus:ring-blue-500 disabled:opacity-50 cursor-pointer"
+              className="mt-1 h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-2 focus:ring-blue-500 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed"
             />
             <label htmlFor="use-location" className="flex-1 text-sm cursor-pointer select-none">
               <span className="font-semibold text-gray-900">現在地の花粉データを取得する</span>
