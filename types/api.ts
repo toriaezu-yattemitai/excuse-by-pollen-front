@@ -16,6 +16,10 @@ export type GenerateRequest = {
   inputs: GenerateInputs;
   options: {
     max_chars: number;
+    location?: {
+      latitude: number;
+      longitude: number;
+    };
   };
 };
 

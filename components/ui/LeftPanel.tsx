@@ -21,12 +21,18 @@ export default function LeftPanel({ onGenerate, isLoading }: LeftPanelProps) {
   const [situation, setSituation] = useState("");
   const [level, setLevel] = useState(3);
   const [nuance, setNuance] = useState("ポエム風");
+  const [useLocation, setUseLocation] = useState(false);
 
   const handleSubmit = () => {
     // バリデーション
     if (!symptom.trim()) {
       alert("症状を入力してください");
       return;
+    }
+
+    // TODO: 位置情報取得ロジックは次のPR(feature/geoloc-logic)で実装
+    if (useLocation) {
+      console.log("📍 位置情報取得がONです（次のPRで実装予定）");
     }
 
     // API送信用のデータを作成
@@ -83,6 +89,27 @@ export default function LeftPanel({ onGenerate, isLoading }: LeftPanelProps) {
             <option value="軽いタッチ">軽いタッチ</option>
             <option value="ユーモア">ユーモア</option>
           </SelectBoxWithLabel>
+        </div>
+
+        {/* 位置情報取得の同意チェックボックス */}
+        <div className="space-y-2 pt-2">
+          <div className="flex items-start gap-3 p-4 bg-blue-50 rounded-lg border border-blue-100">
+            <input
+              type="checkbox"
+              id="use-location"
+              checked={useLocation}
+              onChange={(e) => setUseLocation(e.target.checked)}
+              disabled={isLoading}
+              className="mt-1 h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-2 focus:ring-blue-500 disabled:opacity-50 cursor-pointer"
+            />
+            <label htmlFor="use-location" className="flex-1 text-sm cursor-pointer select-none">
+              <span className="font-semibold text-gray-900">現在地の花粉データを取得する</span>
+              <br />
+              <span className="text-xs text-gray-500">
+                ※位置情報は取得のみに使用され保存されません
+              </span>
+            </label>
+          </div>
         </div>
       </div>
 
