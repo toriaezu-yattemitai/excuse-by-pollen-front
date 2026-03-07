@@ -42,7 +42,7 @@ const getCurrentLocation = (): Promise<{ latitude: number; longitude: number } |
         alert(message + "\n\n位置情報なしで生成を続けます。");
         resolve(null);
       },
-      { timeout: 10000, enableHighAccuracy: false, maximumAge: 60000 }
+      { enableHighAccuracy: false, maximumAge: 60000 }
     );
   });
 };
