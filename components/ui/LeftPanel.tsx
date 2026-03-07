@@ -6,8 +6,9 @@ import TextBoxWithLabel from "./common/TextBoxWithLabel";
 import NumberSliderWithLabel from "./common/NumberSliderWithLabel";
 import SelectBoxWithLabel from "./common/SelectBoxWithLabel";
 import type { GenerateRequest } from "@/types/api";
+import CheckBoxWithLabel from "./common/CheckBoxWithLabel";
 
-type LeftPanelProps = {
+type Props = {
   onGenerate: (inputs: GenerateRequest["inputs"], options?: Partial<GenerateRequest["options"]>) => void,
   isLoading: boolean,
 };
@@ -50,7 +51,7 @@ const getCurrentLocation = (): Promise<{ latitude: number; longitude: number } |
 /**
  * 左側の入力パネルコンポーネント
  */
-export default function LeftPanel({ onGenerate, isLoading }: LeftPanelProps) {
+export default function LeftPanel({ onGenerate, isLoading }: Props) {
   const [target, setTarget] = useState("");
   const [symptom, setSymptom] = useState("");
   const [situation, setSituation] = useState("");
@@ -150,24 +151,13 @@ export default function LeftPanel({ onGenerate, isLoading }: LeftPanelProps) {
         </div>
 
         {/* 位置情報取得の同意チェックボックス */}
-        <div className="space-y-2 pt-2">
-          <div className="flex items-start gap-3 p-4 bg-blue-50 rounded-lg border border-blue-100">
-            <input
-              type="checkbox"
-              id="use-location"
-              checked={useLocation}
-              onChange={(e) => handleLocationCheckChange(e.target.checked)}
-              disabled={isLoading}
-              className="mt-1 h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-2 focus:ring-blue-500 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed"
-            />
-            <label htmlFor="use-location" className="flex-1 text-sm cursor-pointer select-none">
-              <span className="font-semibold text-gray-900">現在地の花粉データを取得する</span>
-              <br />
-              <span className="text-xs text-gray-500">
-                ※位置情報は取得のみに使用され保存されません
-              </span>
-            </label>
+        <div className="space-y-1 pt-2">
+          <div className="font-semibold flex items-start gap-3 p-4 bg-blue-50 rounded-lg border border-blue-100">
+            <CheckBoxWithLabel id="use-location" label="現在地の花粉データを取得する" checked={useLocation} disabled={isLoading} onChange={(e) => handleLocationCheckChange(e.target.checked)} />
           </div>
+          <span className="text-xs text-gray-500">
+            ※位置情報は取得のみに使用され保存されません
+          </span>
         </div>
       </div>
 

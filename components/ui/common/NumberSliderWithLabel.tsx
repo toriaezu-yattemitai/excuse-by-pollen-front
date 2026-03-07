@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, useId } from "react";
 import NumberSlider from "./NumberSlider";
 import Label from "./Label";
 
@@ -7,6 +7,7 @@ import Label from "./Label";
  */
 type NumberSliderWithLabelProps = {
     onChange: (e: ChangeEvent<HTMLInputElement>) => void,
+    id?: string,
     value: number,
     min: number,
     max: number,
@@ -15,16 +16,19 @@ type NumberSliderWithLabelProps = {
     disabled?: boolean,
 };
 
-export default function NumberSliderWithLabel({ onChange, min, max, step, value, label, disabled = false }: NumberSliderWithLabelProps) {
+export default function NumberSliderWithLabel({ onChange, id, min, max, step, value, label, disabled = false }: NumberSliderWithLabelProps) {
+    const generatedId = useId();
+    id = id || generatedId; // idが指定されていない場合はuseId()から利用する
+
     return (
         <>
             <div className="flex justify-between items-center">
-                <Label>{label}</Label>
+                <Label forId={id}>{label}</Label>
                 <div className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 text-blue-600 font-bold text-sm">
                     {value}
                 </div>
             </div>
-            <NumberSlider onChange={onChange} min={min} max={max} step={step} value={value} disabled={disabled} />
+            <NumberSlider id={id} onChange={onChange} min={min} max={max} step={step} value={value} disabled={disabled} />
         </>
     );
 }

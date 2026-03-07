@@ -23,11 +23,10 @@ export default function ResultCard({ result }: {
         <div className="flex items-center gap-3">
           <span className="text-xs font-bold text-gray-500 tracking-wide">説得力スコア</span>
           <div className="relative w-14 h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center bg-white shadow-sm border border-gray-100">
-            <div
-              id="score-circle"
-              className={`${styles.circularProgress} absolute inset-0 rounded-full circular-progress`}
-              style={{ "--progress": `${progress}deg` } as CSSProperties}
-            ></div>
+            {/* スコア表示の円表示 */}
+            <div id="score-circle" className={`${styles.circularProgress} absolute inset-0 rounded-full circular-progress`}
+              style={{ "--progress": `${progress}deg` } as CSSProperties}></div>
+
             <div className="absolute inset-1.5 lg:inset-2 bg-white rounded-full flex items-center justify-center">
               <span id="score-value" className="text-lg lg:text-xl font-black text-gray-600">{result.score}</span>
             </div>

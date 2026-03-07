@@ -3,8 +3,13 @@ import { ReactNode } from "react";
 /**
  * ラベルの部品コンポーネント
  */
-export default function Label({ children }: {children: ReactNode}) {
+type Props = {
+    forId?: string,
+    children: ReactNode,
+};
+
+export default function Label({ forId, children }: Props) {
     return (
-        <label className="block text-sm font-bold text-gray-700">{children}</label>
+        <label htmlFor={forId} className="block text-sm font-bold text-gray-700">{children}</label>
     );
 }
