@@ -30,10 +30,13 @@ export type UsedInputs = {
 
 // 生成APIレスポンス
 export type GenerateResponse = {
-  excuse: string; // 生成された言い訳テキスト
-  score: number; // 説得力スコア (0-100)
-  id: string; // 生成ID
-  used_inputs: UsedInputs; // AIが補完した設定を含む入力データ
+  excuse: string, // 生成された言い訳テキスト
+  score: number, // 説得力スコア (0-100)
+  id: string, // 生成ID
+  used_inputs: UsedInputs, // AIが補完した設定を含む入力データ
+  options: {
+    badges: Record<string, string>, // badges には location, pollen-index, pollen-speciesなどが入る想定、値をバッジとしてUIに表示する
+  },
 };
 
 // 再生成APIリクエスト
