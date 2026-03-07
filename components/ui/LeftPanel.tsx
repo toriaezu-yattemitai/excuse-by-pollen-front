@@ -30,11 +30,6 @@ export default function LeftPanel({ onGenerate, isLoading }: LeftPanelProps) {
       return;
     }
 
-    // TODO: 位置情報取得ロジックは次のPR(feature/geoloc-logic)で実装
-    if (useLocation) {
-      console.log("📍 位置情報取得がONです（次のPRで実装予定）");
-    }
-
     // API送信用のデータを作成
     const inputs: GenerateRequest["inputs"] = {
       symptoms: [symptom.trim()],
