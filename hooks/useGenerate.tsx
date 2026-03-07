@@ -19,7 +19,7 @@ export function useGenerate() {
     | null>(null);
 
   // 言い訳を生成する
-  const handleGenerate = async (inputs: GenerateRequest["inputs"]) => {
+  const handleGenerate = async (inputs: GenerateRequest["inputs"], options?: Partial<GenerateRequest["options"]>) => {
     setIsLoading(true);
     setError(null);
     setLastRequest({ type: 'generate', data: inputs });
@@ -27,7 +27,7 @@ export function useGenerate() {
     try {
       const payload: GenerateRequest = {
         inputs,
-        options: { max_chars: 220 },
+        options: { max_chars: 220, ...options },
       };
 
       const response = await fetch(API_URI + "generate", {
