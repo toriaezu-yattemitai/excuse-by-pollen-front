@@ -58,6 +58,22 @@ export default function LeftPanel({ onGenerate, isLoading }: LeftPanelProps) {
   const [nuance, setNuance] = useState("ポエム風");
   const [useLocation, setUseLocation] = useState(false);
 
+  /**
+   * 位置情報チェックボックスの変更ハンドル
+   */
+  const handleLocationCheckChange = async (checked: boolean) => {
+    if (checked) {
+      // チェックされたら、位置情報の許可を求める
+      const location = await getCurrentLocation();
+      if (location) {
+        // 許可が得られた場合のみチェックをONにする
+        setUseLocation(true);
+        return;
+      }
+    }
+    setUseLocation(false);
+  };
+
   const handleSubmit = async () => {
     // バリデーション
     if (!symptom.trim()) {
@@ -140,7 +156,7 @@ export default function LeftPanel({ onGenerate, isLoading }: LeftPanelProps) {
               type="checkbox"
               id="use-location"
               checked={useLocation}
-              onChange={(e) => setUseLocation(e.target.checked)}
+              onChange={(e) => handleLocationCheckChange(e.target.checked)}
               disabled={isLoading}
               className="mt-1 h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-2 focus:ring-blue-500 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed"
             />
