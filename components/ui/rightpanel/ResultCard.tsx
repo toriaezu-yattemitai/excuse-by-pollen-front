@@ -2,21 +2,30 @@ import { CSSProperties } from "react";
 import styles from "./ResultCard.module.css";
 import { GenerateResponse } from "@/types/api";
 import getScoreEmoji from "@/app/utils/ScoreEmoji";
+import TtsButton from "./button/TtsButton";
 
-/**
- * 生成結果の表示カード
- */
-export default function ResultCard({ result }: {
+type Props = {
   result: GenerateResponse | {
     excuse: string,
     score: number,
   }
-}) {
+};
+
+/**
+ * 生成結果の表示カード
+ */
+export default function ResultCard({ result }: Props) {
   const progress = (result.score / 100) * 360;
 
   return (
     <div className="flex flex-col bg-white p-4 m-2 lg:p-5 z-10 border border-gray-200 rounded-2xl">
-      <span className="flex-1 text-gray-700 text-lg lg:text-xl">{result.excuse}</span>
+      <span className="flex-1 text-gray-700 text-lg lg:text-xl">
+        {result.excuse}
+        <span className="float-right ml-2">
+          <TtsButton result={result} />
+        </span>
+
+      </span>
       <hr className="my-3" />
       <div className="flex items-center justify-between">
         <span className="text-2xl">{getScoreEmoji(result.score)}</span>

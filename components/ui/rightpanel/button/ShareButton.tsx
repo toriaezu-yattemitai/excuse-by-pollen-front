@@ -16,7 +16,7 @@ export default function ShareButton({result}: {result: GenerateResponse}) {
     };
 
     return (
-        <Button onClick={handleShare}>
+        <Button color="black" onClick={handleShare}>
             <FontAwesomeIcon icon={faXTwitter} />Xでシェア
         </Button>
     );
