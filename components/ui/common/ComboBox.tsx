@@ -1,0 +1,92 @@
+import { useDropdownPosition } from "@/hooks/ui/useDropdownPosition";
+import { useComboBoxOptions } from "@/hooks/ui/useComboBoxOptions";
+import { ChangeEvent, ReactNode, useEffect, useId, useRef, useState } from "react";
+import { useOutsideClick } from "@/hooks/ui/useOutsideClick";
+import ComboBoxDropdown from "./ComboBoxDropdown";
+
+/**
+ * コンボボックスの部品コンポーネント (選択ボックス＋テキストボックス)
+ */
+type Props = {
+	id?: string,
+	onChange: (e: ChangeEvent<HTMLInputElement>) => void,
+	placeholder?: string,
+	value?: string,
+	disabled?: boolean,
+	children: ReactNode,
+};
+
+export default function ComboBox({ id, onChange, placeholder = "", value = "", disabled = false, children }: Props) {
+	const generatedId = useId();
+	const inputId = id || generatedId;
+	const [isOpen, setIsOpen] = useState(false);
+	const [isMounted, setIsMounted] = useState(false);
+	const containerRef = useRef<HTMLDivElement | null>(null);
+	const dropdownRef = useRef<HTMLDivElement | null>(null);
+	const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+    const { filteredOptions } = useComboBoxOptions(children, value);
+    const { position } = useDropdownPosition(containerRef, isOpen);
+    useOutsideClick([containerRef, dropdownRef], isOpen, () => setIsOpen(false));
+
+	const emitChange = (nextValue: string) => {
+		onChange({
+			target: { value: nextValue },
+			currentTarget: { value: nextValue },
+		} as ChangeEvent<HTMLInputElement>);
+	};
+
+	const handleBlur = () => {
+		closeTimer.current = setTimeout(() => setIsOpen(false), 100);
+	};
+
+	const handleFocus = () => {
+		if (closeTimer.current) {
+			clearTimeout(closeTimer.current);
+		}
+		setIsOpen(true);
+	};
+
+	useEffect(() => {
+		setIsMounted(true);
+	}, []);
+
+	useEffect(() => {
+		return () => {
+			if (closeTimer.current) {
+				clearTimeout(closeTimer.current);
+			}
+		};
+	}, []);
+
+	return (
+		<div ref={containerRef} className="relative">
+			<input
+				type="text"
+				id={inputId}
+				className={`w-full px-4 py-3 bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all placeholder:text-gray-400 text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed pr-10 ${isOpen ? "rounded-t-xl rounded-b-none" : "rounded-xl"}`}
+				placeholder={placeholder}
+				value={value}
+				onChange={onChange}
+				onFocus={handleFocus}
+				onBlur={handleBlur}
+				disabled={disabled}
+				autoComplete="off"
+			/>
+			<button
+				type="button"
+				onMouseDown={(e) => e.preventDefault()}
+				onClick={() => setIsOpen((prev) => !prev)}
+				disabled={disabled}
+				className="absolute inset-y-0 right-0 flex items-center px-4 text-gray-500 disabled:cursor-not-allowed"
+				aria-label="候補を表示"
+			>
+				<svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+				</svg>
+			</button>
+
+            <ComboBoxDropdown isMounted={isMounted} isOpen={isOpen} disabled={disabled} dropdownRef={dropdownRef} position={position} options={filteredOptions} value={value} onSelect={emitChange} />
+		</div>
+	);
+}

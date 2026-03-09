@@ -3,7 +3,7 @@ import { ChangeEvent, ReactNode } from "react";
 /**
  * 選択ボックスの部品コンポーネント
  */
-type SelectBoxProps = {
+type Props = {
     id?: string,
     onChange: (e: ChangeEvent<HTMLSelectElement>) => void,
     value: string,
@@ -11,7 +11,7 @@ type SelectBoxProps = {
     disabled?: boolean,
 };
 
-export default function SelectBox({ id, onChange, value, children, disabled = false }: SelectBoxProps) {
+export default function SelectBox({ id, onChange, value, children, disabled = false }: Props) {
     return (
         <div className="relative">
             <select id={id} value={value} onChange={onChange} disabled={disabled}
