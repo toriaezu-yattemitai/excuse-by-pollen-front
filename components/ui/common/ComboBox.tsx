@@ -25,6 +25,8 @@ export default function ComboBox({ id, onChange, placeholder = "", value = "", d
 	const dropdownRef = useRef<HTMLDivElement | null>(null);
 	const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+    const [highlightedIndex, setHighlightedIndex] = useState(-1); // キーボードでの選択用
+
     const { filteredOptions } = useComboBoxOptions(children, value);
     const { position } = useDropdownPosition(containerRef, isOpen);
     useOutsideClick([containerRef, dropdownRef], isOpen, () => setIsOpen(false));
@@ -53,23 +55,49 @@ export default function ComboBox({ id, onChange, placeholder = "", value = "", d
 
 	useEffect(() => {
 		return () => {
-			if (closeTimer.current) {
+			if (closeTimer.current)
 				clearTimeout(closeTimer.current);
-			}
 		};
 	}, []);
+
+    // filteredOptions が変わったらハイライトをリセット
+    useEffect(() => {
+        setHighlightedIndex(-1);
+    }, [filteredOptions]);
+
+    // キーボード操作ハンドラ
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (!isOpen || filteredOptions.length === 0) return;
+
+        if (e.key === "ArrowDown") {
+            e.preventDefault();
+            setHighlightedIndex((prev) => (prev + 1) % filteredOptions.length);
+        } else if (e.key === "ArrowUp") {
+            e.preventDefault();
+            setHighlightedIndex((prev) => (prev - 1 + filteredOptions.length) % filteredOptions.length);
+        } else if (e.key === "Enter") {
+            e.preventDefault();
+            if (highlightedIndex >= 0) {
+                emitChange(filteredOptions[highlightedIndex].value);
+                setIsOpen(false);
+            }
+        } else if (e.key === "Escape") {
+            setIsOpen(false);
+        }
+    };
 
 	return (
 		<div ref={containerRef} className="relative">
 			<input
 				type="text"
 				id={inputId}
-				className={`w-full px-4 py-3 bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all placeholder:text-gray-400 text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed pr-10 ${isOpen ? "rounded-t-xl rounded-b-none" : "rounded-xl"}`}
+				className={`w-full px-4 py-3 bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all placeholder:text-gray-400 text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed pr-10 ${isOpen && filteredOptions.length > 0 ? "rounded-t-xl rounded-b-none" : "rounded-xl"}`}
 				placeholder={placeholder}
 				value={value}
 				onChange={onChange}
 				onFocus={handleFocus}
 				onBlur={handleBlur}
+                onKeyDown={handleKeyDown}
 				disabled={disabled}
 				autoComplete="off"
 			/>
@@ -86,7 +114,7 @@ export default function ComboBox({ id, onChange, placeholder = "", value = "", d
 				</svg>
 			</button>
 
-            <ComboBoxDropdown isMounted={isMounted} isOpen={isOpen} disabled={disabled} dropdownRef={dropdownRef} position={position} options={filteredOptions} value={value} onSelect={emitChange} />
+            <ComboBoxDropdown isMounted={isMounted} isOpen={isOpen} disabled={disabled} dropdownRef={dropdownRef} position={position} options={filteredOptions} value={value} onSelect={emitChange} highlightedIndex={highlightedIndex} />
 		</div>
 	);
 }

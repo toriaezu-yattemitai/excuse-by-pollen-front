@@ -31,8 +31,9 @@ export function useComboBoxOptions(children: ReactNode, keyword: string) {
         const q = keyword.trim().toLowerCase();
         if (!q) return options;
 
-        return options.filter(
-        (option) => option.label.toLowerCase().includes(q) || option.value.toLowerCase().includes(q));
+        return options.filter((option) => 
+            option.value.toLowerCase() !== q && // 完全一致は除外
+            (option.label.toLowerCase().includes(q) || option.value.toLowerCase().includes(q)));
     }, [options, keyword]);
 
     return { options, filteredOptions };
