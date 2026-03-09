@@ -4,7 +4,6 @@ import { useState } from "react";
 import Button from "./common/Button";
 import TextBoxWithLabel from "./common/TextBoxWithLabel";
 import NumberSliderWithLabel from "./common/NumberSliderWithLabel";
-import SelectBoxWithLabel from "./common/SelectBoxWithLabel";
 import type { GenerateRequest } from "@/types/api";
 import CheckBoxWithLabel from "./common/CheckBoxWithLabel";
 
@@ -56,7 +55,7 @@ export default function LeftPanel({ onGenerate, isLoading }: Props) {
   const [symptom, setSymptom] = useState("");
   const [situation, setSituation] = useState("");
   const [level, setLevel] = useState(3);
-  const [nuance, setNuance] = useState("ポエム風");
+  const [nuance, setNuance] = useState("");
   const [useLocation, setUseLocation] = useState(false);
 
   /**
@@ -139,15 +138,9 @@ export default function LeftPanel({ onGenerate, isLoading }: Props) {
 
         {/* ニュアンス/文体 */}
         <div className="space-y-2">
-          <SelectBoxWithLabel label="ニュアンス/文体" value={nuance} disabled={isLoading}
+          <TextBoxWithLabel label="ニュアンス/文体" placeholder="例：ポエム風、ビジネスライク" value={nuance} disabled={isLoading}
             onChange={(e) => setNuance(e.target.value)}
-          >
-            <option value="ポエム風">ポエム風</option>
-            <option value="ビジネスライク">ビジネスライク</option>
-            <option value="深刻">深刻</option>
-            <option value="軽いタッチ">軽いタッチ</option>
-            <option value="ユーモア">ユーモア</option>
-          </SelectBoxWithLabel>
+          />
         </div>
 
         {/* 位置情報取得の同意チェックボックス */}
