@@ -41,21 +41,14 @@ export default async function SharePage({ searchParams }: { searchParams: { text
   const score = params.score || '-1';
   
   return (
-    <div className="bg-gray-50 mx-auto p-4 lg:p-6">
-      <div className="w-full h-full bg-white m-1 p-6 rounded-xl border border-blue-100">
-        <div className="max-w-xl mx-auto">
-          <ResultCard result={
-            {
-              excuse: text,
-              score: parseInt(score),
-            }
-          } />
-        </div>
-
-        <div className="pt-4 mt-4 border-t border-gray-100"></div>
-
-        <div className="max-w-2xs mx-auto">        
-          <TopButton />
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4 lg:p-6">
+      <div className="w-full max-w-xl">
+        <div className="bg-white rounded-xl border border-blue-100 p-6">
+          <p className="text-xs font-semibold text-blue-400 tracking-widest uppercase mb-4">花粉言い訳ジェネレーター</p>
+          <ResultCard result={{ excuse: text, score: parseInt(score) }} />
+          <div className="pt-4 mt-2">
+            <TopButton />
+          </div>
         </div>
       </div>
     </div>
