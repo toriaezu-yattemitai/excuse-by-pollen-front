@@ -6,7 +6,6 @@ import TextBoxWithLabel from "./common/TextBoxWithLabel";
 import NumberSliderWithLabel from "./common/NumberSliderWithLabel";
 import type { GenerateRequest } from "@/types/api";
 import CheckBoxWithLabel from "./common/CheckBoxWithLabel";
-import ComboBox from "./common/ComboBox";
 import ComboBoxWithLabel from "./common/ComboBoxWithLabel";
 
 type Props = {
@@ -67,11 +66,12 @@ export default function LeftPanel({ onGenerate, isLoading }: Props) {
       // チェックされたら、位置情報の許可を求める
       const location = await getCurrentLocation(setLocationError);
       if (location) {
-        // 許可が得られた場合のみチェックをONにする
-        setLocationError(null);
         setUseLocation(true);
         return;
       }
+
+      setUseLocation(false);
+      return;
     }
     setLocationError(null);
     setUseLocation(false);
