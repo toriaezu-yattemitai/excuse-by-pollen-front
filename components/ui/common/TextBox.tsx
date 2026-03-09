@@ -3,7 +3,7 @@ import { ChangeEvent } from "react";
 /**
  * テキストボックスの部品コンポーネント
  */
-type TextBoxProps = {
+type Props = {
     id?: string,
     onChange: (e: ChangeEvent<HTMLInputElement>) => void,
     placeholder: string | undefined,
@@ -11,7 +11,7 @@ type TextBoxProps = {
     disabled?: boolean,
 };
 
-export default function TextBox({ id, onChange, placeholder = "", value = "", disabled = false }: TextBoxProps) {
+export default function TextBox({ id, onChange, placeholder = "", value = "", disabled = false }: Props) {
     return (
         <input
             type="text"

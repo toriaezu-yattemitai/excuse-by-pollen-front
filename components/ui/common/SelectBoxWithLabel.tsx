@@ -10,8 +10,8 @@ type SelectBoxWithLabelProps = {
     onChange: (e: ChangeEvent<HTMLSelectElement>) => void,
     value: string,
     label: string,
-    children: ReactNode,
     disabled?: boolean,
+    children: ReactNode,
 };
 
 export default function SelectBoxWithLabel({ id, onChange, value, label, children, disabled = false }: SelectBoxWithLabelProps) {
