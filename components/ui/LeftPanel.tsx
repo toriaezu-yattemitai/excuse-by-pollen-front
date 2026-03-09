@@ -15,10 +15,10 @@ type Props = {
 /**
  * ブラウザから現在位置（緯度・経度）を取得する
  */
-const getCurrentLocation = (): Promise<{ latitude: number; longitude: number } | null> => {
+const getCurrentLocation = (onError?: (msg: string) => void): Promise<{ latitude: number; longitude: number } | null> => {
   return new Promise((resolve) => {
     if (!navigator.geolocation) {
-      alert("お使いのブラウザは位置情報に対応していません。");
+      onError?.("お使いのブラウザは位置情報に対応していません。");
       resolve(null);
       return;
     }
@@ -31,15 +31,13 @@ const getCurrentLocation = (): Promise<{ latitude: number; longitude: number } |
         });
       },
       (error) => {
-        let message = "位置情報の取得に失敗しました。\n";
+        let message = "位置情報の取得に失敗しました。";
         if (error.code === error.PERMISSION_DENIED) {
-          message += "位置情報へのアクセスが拒否されました。";
+          message = "位置情報へのアクセスが拒否されました。";
         } else if (error.code === error.TIMEOUT) {
-          message += "位置情報の取得がタイムアウトしました。";
-        } else {
-          message += "位置情報を取得できませんでした。";
+          message = "位置情報の取得がタイムアウトしました。";
         }
-        alert(message + "\n\n位置情報なしで生成を続けます。");
+        onError?.(message);
         resolve(null);
       },
       { enableHighAccuracy: false, maximumAge: 60000 }
@@ -57,6 +55,7 @@ export default function LeftPanel({ onGenerate, isLoading }: Props) {
   const [level, setLevel] = useState(3);
   const [nuance, setNuance] = useState("");
   const [useLocation, setUseLocation] = useState(false);
+  const [locationError, setLocationError] = useState<string | null>(null);
 
   /**
    * 位置情報チェックボックスの変更ハンドル
@@ -64,13 +63,15 @@ export default function LeftPanel({ onGenerate, isLoading }: Props) {
   const handleLocationCheckChange = async (checked: boolean) => {
     if (checked) {
       // チェックされたら、位置情報の許可を求める
-      const location = await getCurrentLocation();
+      const location = await getCurrentLocation(setLocationError);
       if (location) {
         // 許可が得られた場合のみチェックをONにする
+        setLocationError(null);
         setUseLocation(true);
         return;
       }
     }
+    setLocationError(null);
     setUseLocation(false);
   };
 
@@ -93,7 +94,7 @@ export default function LeftPanel({ onGenerate, isLoading }: Props) {
       level: level,
       target: target.trim() || null,
       situation: situation.trim() || null,
-      nuance: nuance || null,
+      nuance: nuance.trim() || null,
     };
 
     // options の組み立て（location があれば含める）
@@ -148,9 +149,13 @@ export default function LeftPanel({ onGenerate, isLoading }: Props) {
           <div className="font-semibold flex items-start gap-3 p-4 bg-blue-50 rounded-lg border border-blue-100">
             <CheckBoxWithLabel id="use-location" label="現在地の花粉データを取得する" checked={useLocation} disabled={isLoading} onChange={(e) => handleLocationCheckChange(e.target.checked)} />
           </div>
-          <span className="text-xs text-gray-500">
-            ※位置情報は取得のみに使用され保存されません
-          </span>
+          {locationError ? (
+            <span className="text-xs text-red-500">{locationError}</span>
+          ) : (
+            <span className="text-xs text-gray-500">
+              ※位置情報は取得のみに使用され保存されません
+            </span>
+          )}
         </div>
       </div>
 
