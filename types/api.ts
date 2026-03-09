@@ -39,7 +39,7 @@ export type GenerateResponse = {
   id: string, // 生成ID
   used_inputs: UsedInputs, // AIが補完した設定を含む入力データ
   options?: {
-    badges?: Record<string, string>, // badges には location, pollen-index, pollen-speciesなどが入る想定、値をバッジとしてUIに表示する
+    badges?: Record<string, string>, // badges には location, pollen_index, pollen_speciesなどが入る想定、値をバッジとしてUIに表示する
   },
 };
 

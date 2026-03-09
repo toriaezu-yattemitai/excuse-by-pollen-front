@@ -65,8 +65,8 @@ export async function POST(request: NextRequest) {
       options: {
         badges: {
           "location": "東京都千代田区",
-          "pollen-index": "4",
-          "pollen-species": "スギ",
+          "pollen_index": "4",
+          "pollen_species": "スギ",
         },
       },
     };
