@@ -18,9 +18,9 @@ export default function ResultCard({ result }: Props) {
   const progress = (result.score / 100) * 360;
 
   return (
-    <div className="flex flex-col bg-white p-4 m-2 lg:p-5 z-10 border border-gray-200 rounded-2xl">
+    <div id="result-card" className="flex flex-col bg-white p-4 m-2 lg:p-5 z-10 border border-gray-200 rounded-2xl">
       <span className="flex-1 text-gray-700 text-lg lg:text-xl">
-        {result.excuse}
+        <span id="excuse-text">{result.excuse}</span>
         <span className="float-right ml-2">
           <TtsButton result={result} />
         </span>

@@ -113,35 +113,35 @@ export default function LeftPanel({ onGenerate, isLoading }: Props) {
       <div className="flex-1 space-y-6 overflow-y-auto">
         {/* 相手入力 */}
         <div className="space-y-2">
-          <TextBoxWithLabel label="相手" placeholder="例：上司、先生" value={target} disabled={isLoading}
+          <TextBoxWithLabel id="target" label="相手" placeholder="例：上司、先生" value={target} disabled={isLoading}
             onChange={(e) => setTarget(e.target.value)}
           />
         </div>
 
         {/* 症状入力 */}
         <div className="space-y-2">
-          <TextBoxWithLabel label="症状" placeholder="例：鼻水が止まらない" value={symptom} disabled={isLoading}
+          <TextBoxWithLabel id="symptom" label="症状" placeholder="例：鼻水が止まらない" value={symptom} disabled={isLoading}
             onChange={(e) => setSymptom(e.target.value)}
           />
         </div>
 
         {/* 状況入力 */}
         <div className="space-y-2">
-          <TextBoxWithLabel label="状況" placeholder="例：大事な会議前" value={situation} disabled={isLoading}
+          <TextBoxWithLabel id="situation" label="状況" placeholder="例：大事な会議前" value={situation} disabled={isLoading}
             onChange={(e) => setSituation(e.target.value)}
           />
         </div>
 
         {/* 花粉症レベル */}
         <div className="space-y-4 pt-2">
-          <NumberSliderWithLabel label="花粉症レベル" min={1} max={5} step={1} value={level} disabled={isLoading}
+          <NumberSliderWithLabel id="level" label="花粉症レベル" min={1} max={5} step={1} value={level} disabled={isLoading}
             onChange={(e) => setLevel(parseInt(e.target.value))}
           />
         </div>
 
         {/* ニュアンス/文体 */}
         <div className="space-y-2">
-          <ComboBoxWithLabel label="ニュアンス/文体" placeholder="例：ポエム風、ビジネスライク" value={nuance} disabled={isLoading} onChange={(e) => setNuance(e.target.value)}>
+          <ComboBoxWithLabel id="nuance" label="ニュアンス/文体" placeholder="例：ポエム風、ビジネスライク" value={nuance} disabled={isLoading} onChange={(e) => setNuance(e.target.value)}>
             <option value="ポエム風">ポエム風</option>
             <option value="ビジネスライク">ビジネスライク</option>
             <option value="深刻">深刻</option>
@@ -167,7 +167,7 @@ export default function LeftPanel({ onGenerate, isLoading }: Props) {
 
       {/* 生成ボタン */}
       <div className="pt-6 mt-4 border-t border-gray-100">
-        <Button onClick={handleSubmit} color="blue" disabled={isLoading}>
+        <Button id="generate" onClick={handleSubmit} color="blue" disabled={isLoading}>
           <span>{isLoading ? "生成中..." : "言い訳を生成する"}</span>
         </Button>
       </div>

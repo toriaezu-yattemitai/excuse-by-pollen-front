@@ -20,8 +20,8 @@ export default function ActionButtons({onRetry, result}: Props) {
     return (
         <div className="pt-4 mt-4 border-t border-gray-100">
             <div className={"flex flex-col min-[380px]:flex-row gap-2"}>
-                <RetryButton showRetryInput={showRetryInput} setShowRetryInput={setShowRetryInput}/>
-                <ShareButton result={result} />
+                <RetryButton id="retry-button" showRetryInput={showRetryInput} setShowRetryInput={setShowRetryInput}/>
+                <ShareButton id="share-button" result={result} />
             </div>
             
             {/* もっと盛るときの入力欄（もっと盛るボタンを押したら表示） */}
