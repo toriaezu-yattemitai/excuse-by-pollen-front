@@ -1,9 +1,24 @@
 import { useState } from "react";
 import type { GenerateRequest, GenerateResponse, RetryRequest } from "@/types/api";
 
-// const API_URI = "/api/"; // モック環境
-// const API_URI = "http://localhost:8000/"; // ローカル環境
-const API_URI = "https://excuse-by-pollen-back.onrender.com/"; // 本番環境
+const MOCK_API_URI = "/api/"; // モック環境
+const DEV_API_URI = "http://localhost:8000/"; // 開発環境
+const PROD_API_URI = "https://excuse-by-pollen-back.onrender.com/"; // 本番環境
+
+/**
+ * 通常時は本番環境でのAPIを利用し、開発時は開発環境のAPIを使う
+ * また、バックエンドがローカルで起動していない場合、モック環境をフォールバックとする
+ */
+const fetchApi = async (path: string, init: RequestInit): Promise<Response> => {
+  if (process.env.NODE_ENV !== "development")
+    return await fetch(PROD_API_URI + path, init);
+
+  try {
+    return await fetch(DEV_API_URI + path, init);
+  } catch {
+    return await fetch(MOCK_API_URI + path, init);
+  }
+};
 
 export function useGenerate() {
   const [result, setResult] = useState<GenerateResponse | null>(null);
@@ -30,7 +45,7 @@ export function useGenerate() {
         options: { max_chars: 220, ...options },
       };
 
-      const response = await fetch(API_URI + "generate", {
+      const response = await fetchApi("generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -69,7 +84,7 @@ export function useGenerate() {
         retry_instruction: retryInstruction,
       };
 
-      const response = await fetch(API_URI + "retry", {
+      const response = await fetchApi("retry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
