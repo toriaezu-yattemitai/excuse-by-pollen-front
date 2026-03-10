@@ -3,6 +3,7 @@ import Button from "../../common/Button";
 import { faTurnUp } from "@fortawesome/free-solid-svg-icons";
 
 type Props = {
+    id?: string,
     showRetryInput: boolean,
     setShowRetryInput: (showRetryInput: boolean) => void,
 };
@@ -10,7 +11,7 @@ type Props = {
 /**
  * もっと盛るボタン
  */
-export default function RetryButton({showRetryInput, setShowRetryInput}: Props) {
+export default function RetryButton({id, showRetryInput, setShowRetryInput}: Props) {
     const handleRetry = () => {
         if (!showRetryInput) {
             setShowRetryInput(true);
@@ -19,7 +20,7 @@ export default function RetryButton({showRetryInput, setShowRetryInput}: Props) 
     };
 
     return (
-        <Button color="green" onClick={handleRetry}>
+        <Button id={id} color="green" onClick={handleRetry}>
             <FontAwesomeIcon icon={faTurnUp} />
             もっと盛る
         </Button>
