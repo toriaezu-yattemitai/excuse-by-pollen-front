@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { Suspense } from "react";
 import ShareContent from "./ShareContent";
 import fetchApi from "@/hooks/utils/APIUtil";
 
@@ -54,6 +55,10 @@ export async function generateMetadata({ searchParams }: { searchParams: { id?: 
   };
 }
 
-export default async function SharePage({ searchParams }: { searchParams: { id?: string, text?: string, score?: string } }) {
-  return <ShareContent />;
+export default async function SharePage() {
+  return (
+    <Suspense fallback={null}>
+      <ShareContent />
+    </Suspense>
+  )
 }
