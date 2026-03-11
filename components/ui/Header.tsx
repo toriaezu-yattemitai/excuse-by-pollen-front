@@ -8,7 +8,7 @@ export default function Header() {
     <div className="z-10 shadow-sm">
       {/* 斜めストライプバー */}
       <div className="h-3 w-full border-l-3 border-r-3 border-t-3 rounded-t-xl border-gray-800" style={{
-        background: 'repeating-linear-gradient(-45deg, #06b6d4, #06b6d4 10px, #67e8f9 10px, #67e8f9 20px)'
+        background: 'repeating-linear-gradient(-45deg, #f59e0b, #f59e0b 10px, #fcd34d 10px, #fcd34d 20px)'
       }} />
       {/* タイトルバー */}
       <div className="bg-white px-4 py-2 border-[3px] border-gray-800">

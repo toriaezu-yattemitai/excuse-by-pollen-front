@@ -12,7 +12,7 @@ const colorClass: Record<string, string> = {
     white: "bg-gray-100 text-gray-800 border-2 border-gray-800 font-bold",
     black: "bg-gray-800 text-white border-2 border-gray-900 font-bold",
     green: "bg-green-100 text-green-800 border-2 border-green-700 font-bold",
-    blue: "bg-cyan-100 text-cyan-800 border-2 border-cyan-700 font-bold",
+    blue: "bg-amber-100 text-amber-800 border-2 border-amber-700 font-bold",
     red: "bg-red-100 text-red-800 border-2 border-red-700 font-bold",
     yellow: "bg-yellow-100 text-yellow-800 border-2 border-yellow-600 font-bold",
 };
