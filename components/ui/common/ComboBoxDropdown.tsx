@@ -30,7 +30,7 @@ export default function ComboBoxDropdown({ id, isMounted, isOpen, disabled, drop
                     key={option.value}
                     onMouseDown={(e) => e.preventDefault()}
                     onClick={() => onSelect(option.value)}
-                    className={`w-full text-left px-4 py-2 transition-colors font-medium ${
+                    className={`w-full text-left px-4 py-2 transition-colors font-medium cursor-pointer ${
                         option.value === value ? "bg-amber-50 text-amber-700 font-black" : index === highlightedIndex ? "bg-gray-100 text-gray-800 font-medium" : "text-gray-700 hover:bg-gray-50 font-medium"}`}
                 >
                     {option.label}
