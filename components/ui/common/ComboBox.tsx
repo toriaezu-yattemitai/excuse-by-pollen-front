@@ -91,7 +91,7 @@ export default function ComboBox({ id, onChange, placeholder = "", value = "", d
 			<input
 				type="text"
 				id={inputId}
-				className={`w-full px-4 py-3 bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all placeholder:text-gray-400 text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed pr-10 ${isOpen && filteredOptions.length > 0 ? "rounded-t-xl rounded-b-none" : "rounded-xl"}`}
+				className={`w-full px-4 py-3 bg-white border-2 border-gray-700 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100 transition-all placeholder:text-gray-400 text-gray-800 font-medium disabled:opacity-50 disabled:cursor-not-allowed pr-10 ${isOpen && filteredOptions.length > 0 ? "rounded-t-xl rounded-b-none" : "rounded-xl"}`}
 				placeholder={placeholder}
 				value={value}
 				onChange={onChange}

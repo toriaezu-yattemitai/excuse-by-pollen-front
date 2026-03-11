@@ -24,7 +24,7 @@ export default function NumberSliderWithLabel({ onChange, id, min, max, step, va
         <>
             <div className="flex justify-between items-center">
                 <Label forId={id}>{label}</Label>
-                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 text-blue-600 font-bold text-sm">
+                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-cyan-500 text-white font-black text-sm">
                     {value}
                 </div>
             </div>

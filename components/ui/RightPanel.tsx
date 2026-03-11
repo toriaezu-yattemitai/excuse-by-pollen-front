@@ -22,7 +22,7 @@ type Props = {
  */
 export default function RightPanel({ onRetry, onResend, result, isLoading, error }: Props) {
   return (
-    <div className="flex flex-col h-full bg-white m-1 p-6 rounded-xl border-3 border-gray-800">
+    <div className="flex flex-col h-full bg-white m-2 p-6 rounded-xl border-3 border-gray-800 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
       { /* 生成中 */ }
       {isLoading && <LoadingSection />}
 
