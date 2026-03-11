@@ -43,8 +43,8 @@ export default async function SharePage({ searchParams }: { searchParams: { text
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4 lg:p-6">
       <div className="w-full max-w-xl">
-        <div className="bg-white rounded-xl border border-blue-100 p-6">
-          <p className="text-xs font-semibold text-blue-400 tracking-widest uppercase mb-4">花粉言い訳ジェネレーター</p>
+        <div className="bg-white rounded-xl border border-amber-100 p-6">
+          <p className="text-xs font-semibold text-amber-500 tracking-widest uppercase mb-4">花粉言い訳ジェネレーター</p>
           <ResultCard result={{ excuse: text, score: parseInt(score) }} />
           <div className="pt-4 mt-2">
             <TopButton />
