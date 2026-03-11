@@ -1,5 +1,7 @@
 "use client";
 
+import Footer from "@/components/ui/Footer";
+import Header from "@/components/ui/Header";
 import LeftPanel from "@/components/ui/LeftPanel";
 import RightPanel from "@/components/ui/RightPanel";
 import { useGenerate } from "@/hooks/useGenerate";
@@ -9,10 +11,11 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
+      <Header />
       {/* メインコンテンツエリア
         - パソコン: 左右2カラムレイアウト
         - ケータイ: 上下レイアウト
-        */}
+      */}
       <main className="flex-1 container mx-auto p-4 lg:p-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-full">
           {/* 左パネル */}
@@ -26,6 +29,7 @@ export default function Home() {
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   );
 }
