@@ -19,6 +19,7 @@ type Props = {
 export default function ComboBox({ id, onChange, placeholder = "", value = "", disabled = false, children }: Props) {
 	const generatedId = useId();
 	const inputId = id || generatedId;
+	const dropdownId = `${inputId}-listbox`;
 	const [isOpen, setIsOpen] = useState(false);
 	const [isMounted, setIsMounted] = useState(false);
 	const containerRef = useRef<HTMLDivElement | null>(null);
@@ -36,6 +37,11 @@ export default function ComboBox({ id, onChange, placeholder = "", value = "", d
 			target: { value: nextValue },
 			currentTarget: { value: nextValue },
 		} as ChangeEvent<HTMLInputElement>);
+	};
+
+	const handleSelect = (nextValue: string) => {
+		emitChange(nextValue);
+		setIsOpen(false);
 	};
 
 	const handleBlur = () => {
@@ -66,8 +72,13 @@ export default function ComboBox({ id, onChange, placeholder = "", value = "", d
     }, [filteredOptions]);
 
     // キーボード操作ハンドラ
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (!isOpen || filteredOptions.length === 0) return;
+	const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+		if (e.key === "Escape") {
+			setIsOpen(false);
+			return;
+		}
+
+		if (!isOpen || filteredOptions.length === 0) return;
 
         if (e.key === "ArrowDown") {
             e.preventDefault();
@@ -78,11 +89,8 @@ export default function ComboBox({ id, onChange, placeholder = "", value = "", d
         } else if (e.key === "Enter") {
             e.preventDefault();
             if (highlightedIndex >= 0) {
-                emitChange(filteredOptions[highlightedIndex].value);
-                setIsOpen(false);
+				handleSelect(filteredOptions[highlightedIndex].value);
             }
-        } else if (e.key === "Escape") {
-            setIsOpen(false);
         }
     };
 
@@ -100,6 +108,10 @@ export default function ComboBox({ id, onChange, placeholder = "", value = "", d
                 onKeyDown={handleKeyDown}
 				disabled={disabled}
 				autoComplete="off"
+				role="combobox"
+				aria-expanded={isOpen}
+				aria-controls={dropdownId}
+				aria-autocomplete="list"
 			/>
 			<button
 				type="button"
@@ -108,13 +120,15 @@ export default function ComboBox({ id, onChange, placeholder = "", value = "", d
 				disabled={disabled}
 				className="absolute inset-y-0 right-0 flex items-center px-4 text-gray-500 disabled:cursor-not-allowed"
 				aria-label="候補を表示"
+				aria-expanded={isOpen}
+				aria-controls={dropdownId}
 			>
 				<svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 					<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
 				</svg>
 			</button>
 
-            <ComboBoxDropdown isMounted={isMounted} isOpen={isOpen} disabled={disabled} dropdownRef={dropdownRef} position={position} options={filteredOptions} value={value} onSelect={emitChange} highlightedIndex={highlightedIndex} />
+            <ComboBoxDropdown id={dropdownId} isMounted={isMounted} isOpen={isOpen} disabled={disabled} dropdownRef={dropdownRef} position={position} options={filteredOptions} value={value} onSelect={handleSelect} highlightedIndex={highlightedIndex} />
 		</div>
 	);
 }
