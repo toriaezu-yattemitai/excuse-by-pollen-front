@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "花粉エクスキュースジェネレーター",
+  title: "花粉症・限界突破エクスキューズジェネレーター",
   description: "花粉症を理由にした言い訳を生成するウェブアプリ",
 };
 
@@ -28,7 +28,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Header title={metadata.title as string} />
+        <Header />
         {children}
       </body>
     </html>
