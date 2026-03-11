@@ -10,13 +10,13 @@ export default function Home() {
   const { result, isLoading, error, handleGenerate, handleRetry, handleResend } = useGenerate();
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className="min-h-screen flex flex-col">
       <Header />
       {/* メインコンテンツエリア
         - パソコン: 左右2カラムレイアウト
         - ケータイ: 上下レイアウト
       */}
-      <main className="flex-1 container mx-auto p-4 lg:p-6">
+      <main className="flex-1 container mx-auto px-4 pt-3 pb-4 lg:px-6 lg:pt-4 lg:pb-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-full">
           {/* 左パネル */}
           <div className="h-full">
