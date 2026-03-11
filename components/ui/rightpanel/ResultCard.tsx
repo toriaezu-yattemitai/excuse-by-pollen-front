@@ -18,7 +18,7 @@ export default function ResultCard({ result }: Props) {
   const progress = (result.score / 100) * 360;
 
   return (
-    <div id="result-card" className="flex flex-col bg-white p-4 m-2 lg:p-5 z-10 border border-gray-200 rounded-2xl">
+    <div id="result-card" className="flex flex-col bg-white p-4 m-2 lg:p-5 z-10 border-3 border-gray-800 rounded-2xl">
       <span className="flex-1 text-gray-700 text-lg lg:text-xl">
         <span id="excuse-text">{result.excuse}</span>
         <span className="float-right ml-2">

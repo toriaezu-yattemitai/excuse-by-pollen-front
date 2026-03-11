@@ -4,8 +4,9 @@
 export default function InitialSection() {
     return (
         <div className="flex-1 flex items-center justify-center">
-            <div className="text-center text-gray-400">
-                <p>ここには生成後、結果が表示されます</p>
+            <div className="text-center">
+                <p className="text-4xl mb-3">🌲💨🤧</p>
+                <p className="text-gray-400 font-bold">ここには生成後、結果が表示されます</p>
             </div>
         </div>
     );

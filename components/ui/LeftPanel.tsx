@@ -109,7 +109,7 @@ export default function LeftPanel({ onGenerate, isLoading }: Props) {
   };
 
   return (
-    <div className="flex flex-col h-full bg-white m-1 p-6 rounded-xl border border-blue-100">
+    <div className="flex flex-col h-full bg-white m-1 p-6 rounded-xl border-3 border-gray-800">
       <div className="flex-1 space-y-6 overflow-y-auto">
         {/* 相手入力 */}
         <div className="space-y-2">
