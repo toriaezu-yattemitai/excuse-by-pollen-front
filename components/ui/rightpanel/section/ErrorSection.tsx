@@ -2,7 +2,7 @@ import Button from "../../common/Button";
 
 type ErrorSectionProps = {
   error: string | null,
-  onResend: () => void,
+  onResend?: () => void,
 };
 
 /**
@@ -14,7 +14,7 @@ export default function ErrorSection({error, onResend}: ErrorSectionProps) {
             <div className="text-center space-y-2 text-red-600">
                 <p className="font-bold">エラーが発生しました</p>
                 <p className="text-sm">{error}</p>
-                <Button color="red" onClick={onResend}>再送する</Button>
+                {onResend && <Button color="red" onClick={onResend}>再送する</Button>}
             </div>
         </div>
     );
