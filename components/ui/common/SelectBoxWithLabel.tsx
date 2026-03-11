@@ -9,7 +9,7 @@ type SelectBoxWithLabelProps = {
     id?: string,
     onChange: (e: ChangeEvent<HTMLSelectElement>) => void,
     value: string,
-    label: string,
+    label: string | ReactNode,
     disabled?: boolean,
     children: ReactNode,
 };
