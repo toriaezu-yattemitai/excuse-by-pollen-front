@@ -1,4 +1,4 @@
-import { ChangeEvent, useId } from "react";
+import { ChangeEvent, ReactNode, useId } from "react";
 import TextBox from "./TextBox";
 import Label from "./Label";
 
@@ -7,7 +7,7 @@ import Label from "./Label";
  */
 type TextBoxWithLabelProps = {
     id?: string,
-    label: string,
+    label: string | ReactNode,
     onChange: (e: ChangeEvent<HTMLInputElement>) => void,
     placeholder: string | undefined,
     value: string | undefined,

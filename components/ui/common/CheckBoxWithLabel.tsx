@@ -1,4 +1,4 @@
-import { ChangeEvent, useId } from "react";
+import { ChangeEvent, ReactNode, useId } from "react";
 import CheckBox from "./CheckBox";
 import Label from "./Label";
 
@@ -8,7 +8,7 @@ import Label from "./Label";
 type Props = {
     id?: string,
     onChange: (e: ChangeEvent<HTMLInputElement>) => void,
-    label: string,
+    label: string | ReactNode,
     disabled?: boolean,
     checked: boolean,
 };

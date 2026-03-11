@@ -10,7 +10,7 @@ type Props = {
 	onChange: (e: ChangeEvent<HTMLInputElement>) => void,
 	placeholder?: string,
 	value?: string,
-    label: string,
+    label: string | ReactNode,
 	disabled?: boolean,
 	children: ReactNode,
 };

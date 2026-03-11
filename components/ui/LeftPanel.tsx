@@ -113,18 +113,18 @@ export default function LeftPanel({ onGenerate, isLoading }: Props) {
   return (
     <div className="flex flex-col h-full bg-white m-2 p-6 rounded-xl border-[3px] border-gray-800 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
       <div className="flex-1 space-y-6 overflow-y-auto">
+        {/* 症状入力 */}
+        <div className="space-y-2">
+          <TextBoxWithLabel id="symptom"
+            label={<>症状 <span className="text-xs font-black text-white bg-pink-500 px-1.5 py-0.5 rounded-md">必須</span></>}
+            placeholder="例：鼻水が止まらない" value={symptom} disabled={isLoading} onChange={(e) => setSymptom(e.target.value)}
+          />
+        </div>
+
         {/* 相手入力 */}
         <div className="space-y-2">
           <TextBoxWithLabel id="target" label="相手" placeholder="例：上司、先生" value={target} disabled={isLoading}
             onChange={(e) => setTarget(e.target.value)}
-          />
-        </div>
-
-        {/* 症状入力 */}
-        <div className="space-y-2">
-          <Label forId="symptom">症状 <span className="text-xs font-black text-white bg-pink-500 px-1.5 py-0.5 rounded-md">必須</span></Label>
-          <TextBox id="symptom" placeholder="例：鼻水が止まらない" value={symptom} disabled={isLoading}
-            onChange={(e) => setSymptom(e.target.value)}
           />
         </div>
 
@@ -162,7 +162,7 @@ export default function LeftPanel({ onGenerate, isLoading }: Props) {
             <span className="text-xs text-red-500">{locationError}</span>
           ) : (
             <span className="text-xs text-gray-500">
-              ※位置情報は取得のみに使用され保存されません
+              ※位置情報はサーバー上で市区町村に変換され、そのままでの処理や保存はしません。
             </span>
           )}
         </div>

@@ -1,4 +1,4 @@
-import { ChangeEvent, useId } from "react";
+import { ChangeEvent, ReactNode, useId } from "react";
 import NumberSlider from "./NumberSlider";
 import Label from "./Label";
 
@@ -12,7 +12,7 @@ type NumberSliderWithLabelProps = {
     min: number,
     max: number,
     step: number,
-    label: string,
+    label: string | ReactNode,
     disabled?: boolean,
 };
 
