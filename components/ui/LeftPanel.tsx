@@ -8,6 +8,7 @@ import NumberSliderWithLabel from "./common/NumberSliderWithLabel";
 import type { GenerateRequest } from "@/types/api";
 import CheckBoxWithLabel from "./common/CheckBoxWithLabel";
 import ComboBoxWithLabel from "./common/ComboBoxWithLabel";
+import Label from "./common/Label";
 
 type Props = {
   onGenerate: (inputs: GenerateRequest["inputs"], options?: Partial<GenerateRequest["options"]>) => void,
@@ -110,7 +111,7 @@ export default function LeftPanel({ onGenerate, isLoading }: Props) {
   };
 
   return (
-    <div className="flex flex-col h-full bg-white m-2 p-6 rounded-xl border-3 border-gray-800 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+    <div className="flex flex-col h-full bg-white m-2 p-6 rounded-xl border-[3px] border-gray-800 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
       <div className="flex-1 space-y-6 overflow-y-auto">
         {/* 相手入力 */}
         <div className="space-y-2">
@@ -121,10 +122,7 @@ export default function LeftPanel({ onGenerate, isLoading }: Props) {
 
         {/* 症状入力 */}
         <div className="space-y-2">
-          <div className="flex items-center gap-2">
-            <label htmlFor="symptom" className="block text-sm font-black text-gray-800">症状</label>
-            <span className="text-xs font-black text-white bg-pink-500 px-1.5 py-0.5 rounded-md">必須</span>
-          </div>
+          <Label forId="symptom">症状 <span className="text-xs font-black text-white bg-pink-500 px-1.5 py-0.5 rounded-md">必須</span></Label>
           <TextBox id="symptom" placeholder="例：鼻水が止まらない" value={symptom} disabled={isLoading}
             onChange={(e) => setSymptom(e.target.value)}
           />

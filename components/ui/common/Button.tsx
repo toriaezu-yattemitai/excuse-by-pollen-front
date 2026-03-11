@@ -19,10 +19,10 @@ const STYLED_CLASS_NAME = `${DEFAULT_CLASS_NAME} border-2 border-gray-800 shadow
 const colorClass: Record<string, string> = {
     none: DEFAULT_CLASS_NAME,
     white: `${STYLED_CLASS_NAME} bg-white text-gray-800 hover:bg-gray-100 font-bold`,
-    black: `${STYLED_CLASS_NAME} bg-gray-800 text-white hover:bg-gray-900 font-bold`,
+    black: `${STYLED_CLASS_NAME} bg-gray-600 text-white hover:bg-gray-900 font-bold`,
     pink: `${STYLED_CLASS_NAME} bg-pink-500 text-white hover:bg-pink-600 font-bold`,
     blue: `${STYLED_CLASS_NAME} bg-cyan-500 text-white hover:bg-cyan-600 font-bold`,
-    green: `${STYLED_CLASS_NAME} bg-cyan-500 text-white hover:bg-cyan-600 font-bold`, // blue の別名（後方互換）
+    green: `${STYLED_CLASS_NAME} bg-green-500 text-white hover:bg-cyan-600 font-bold`,
     red: `${STYLED_CLASS_NAME} bg-red-500 text-white hover:bg-red-600 font-bold`,
     yellow: `${STYLED_CLASS_NAME} bg-yellow-400 text-gray-800 hover:bg-yellow-500 font-bold`,
 };
