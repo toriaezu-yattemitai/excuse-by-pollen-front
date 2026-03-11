@@ -1,19 +1,36 @@
 import getScoreEmoji from '@/app/utils/ScoreEmoji';
+import fetchApi from '@/hooks/utils/APIUtil';
 import { ImageResponse } from '@vercel/og';
 import { NextRequest } from 'next/server';
 
 export const runtime = 'edge';
 
 export async function GET(request: NextRequest) {
+  const { searchParams } = new URL(request.url);
+
+  const id = searchParams.get('id') || null;
+  let excuse = searchParams.get('text') || '何も生成されていないようです...';
+  let score = parseInt(searchParams.get('score') || '-1');
+    
+  if (id) {
+    const response = await fetchApi("get-excuse/" + id, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      excuse = data.excuse || excuse;
+      score = data.score || score;
+    }
+  }
+
+  const progress = (score / 100) * 360;
+
+  const circumference = 2 * Math.PI * 54;
+  const strokeDashoffset = circumference - (progress / 360) * circumference;
+  
   try {
-    const { searchParams } = new URL(request.url);
-    const excuse = searchParams.get('text') || '何も生成されていないようです...';
-    const score = parseInt(searchParams.get('score') || '-1');
-    const progress = (score / 100) * 360;
-
-    const circumference = 2 * Math.PI * 54;
-    const strokeDashoffset = circumference - (progress / 360) * circumference;
-
     return new ImageResponse(
       (
         <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%', backgroundColor: 'transparent', 

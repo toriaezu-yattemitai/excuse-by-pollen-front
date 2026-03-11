@@ -7,13 +7,12 @@ export function useGetExcuse() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // 言い訳を生成する
   const handleGetExcuse = async (id: string) => {
     setIsLoading(true);
     setError(null);
 
     try {
-      const response = await fetchApi("get-excuse/?" + id, {
+      const response = await fetchApi("get-excuse/" + id, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });
@@ -23,7 +22,11 @@ export function useGetExcuse() {
         throw new Error(errorData.error || "データの取得に失敗しました");
       }
 
-      setRes(await response.json());
+      setError(null);
+      
+      const data: GenerateResponse = await response.json();
+
+      setRes(data);
     } catch (e) {
       setError(e instanceof Error ? e.message : "エラーが発生しました");
       console.error("GetExcuse error:", e);

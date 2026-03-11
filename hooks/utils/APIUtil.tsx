@@ -1,4 +1,5 @@
-const MOCK_API_URI = "/api/"; // モック環境
+const MOCK_API_URI_REL = "/api/"; // モック環境
+const MOCK_API_URI = "http://localhost:3000/api/"; // モック環境
 const DEV_API_URI = "http://localhost:8000/"; // 開発環境
 const PROD_API_URI = "https://excuse-by-pollen-back.onrender.com/"; // 本番環境
 
@@ -13,7 +14,11 @@ const fetchApi = async (path: string, init: RequestInit): Promise<Response> => {
   try {
     return await fetch(DEV_API_URI + path, init);
   } catch {
-    return await fetch(MOCK_API_URI + path, init);
+    try {    
+      return await fetch(MOCK_API_URI + path, init);
+    } catch {
+      return await fetch(MOCK_API_URI_REL + path, init);
+    }
   }
 };
 
