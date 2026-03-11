@@ -123,9 +123,17 @@ export default function LeftPanel({ onGenerate, isLoading }: Props) {
 
         {/* 相手入力 */}
         <div className="space-y-2">
-          <TextBoxWithLabel id="target" label="相手" placeholder="例：上司、先生" value={target} disabled={isLoading}
-            onChange={(e) => setTarget(e.target.value)}
-          />
+          <ComboBoxWithLabel id="target" label="相手" placeholder="例：上司、先生" value={target} disabled={isLoading}
+            onChange={(e) => setTarget(e.target.value)}>
+            <option value="上司">上司</option>
+            <option value="先生">先生</option>
+            <option value="同僚">同僚</option>
+            <option value="友達">友達</option>
+            <option value="親">親</option>
+            <option value="恋人">恋人</option>
+            <option value="取引先">取引先</option>
+            <option value="クライアント">クライアント</option>
+          </ComboBoxWithLabel>
         </div>
 
         {/* 状況入力 */}
