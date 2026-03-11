@@ -1,22 +1,22 @@
 import { NextRequest, NextResponse } from "next/server";
-import type { GenerateRequest, GenerateResponse } from "@/types/api";
+import type { GenerateResponse } from "@/types/api";
 
 /**
  * モックAPI: データを取得する
- * GET /api/get-excuse?id=xxx
+ * GET /api/get-excuse/<id>
  */
-export async function GET(request: NextRequest) {
+export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   // モックとして2秒待機（API呼び出しをシミュレート）
   await new Promise((resolve) => setTimeout(resolve, 2000));
 
-  if (!request.nextUrl.searchParams.has("id")) {
+  const id = (await params).id;
+
+  if (!id) {
     return NextResponse.json(
       { error: "idパラメータが必要です" },
       { status: 400 }
     );
   }
-
-  const id = request.nextUrl.searchParams.get("id") as string;
 
   // AIが補完する設定（nullの場合はランダムに生成）
   const symptoms = ["鼻水が止まらない", "目がかゆい", "くしゃみが止まらない", "頭がぼーっとする"];
