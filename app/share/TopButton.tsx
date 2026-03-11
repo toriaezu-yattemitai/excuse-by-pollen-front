@@ -4,7 +4,7 @@ import Button from "@/components/ui/common/Button";
 
 export default function TopButton() {
   return (
-    <Button color="blue" onClick={
+    <Button color="orange" onClick={
         () => {
         window.location.href = '/';
         }

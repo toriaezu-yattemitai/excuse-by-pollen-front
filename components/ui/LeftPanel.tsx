@@ -2,13 +2,11 @@
 
 import { useState } from "react";
 import Button from "./common/Button";
-import TextBox from "./common/TextBox";
 import TextBoxWithLabel from "./common/TextBoxWithLabel";
 import NumberSliderWithLabel from "./common/NumberSliderWithLabel";
 import type { GenerateRequest } from "@/types/api";
 import CheckBoxWithLabel from "./common/CheckBoxWithLabel";
 import ComboBoxWithLabel from "./common/ComboBoxWithLabel";
-import Label from "./common/Label";
 
 type Props = {
   onGenerate: (inputs: GenerateRequest["inputs"], options?: Partial<GenerateRequest["options"]>) => void,
@@ -150,6 +148,7 @@ export default function LeftPanel({ onGenerate, isLoading }: Props) {
             <option value="深刻">深刻</option>
             <option value="軽いタッチ">軽いタッチ</option>
             <option value="ユーモア">ユーモア</option>
+            <option value="ファンタジー風">ファンタジー風</option>
           </ComboBoxWithLabel>
         </div>
 

@@ -34,7 +34,7 @@ export default function RetryFormSection({setShowRetryInput, onRetry}: Props) {
                 onChange={(e) => setRetryInstruction(e.target.value)}
             />
             <div className="flex flex-col min-[350px]:flex-row gap-2 border-t-2 border-gray-200 pt-4 mt-4">
-                <Button id="retry-submit" color="blue" onClick={handleRetrySubmit}>再生成</Button>
+                <Button id="retry-submit" color="orange" onClick={handleRetrySubmit}>再生成</Button>
                 <Button id="retry-cancel" color="red" onClick={() => setShowRetryInput(false)}>キャンセル</Button>
             </div>
         </div>

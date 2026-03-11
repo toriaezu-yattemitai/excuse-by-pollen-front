@@ -20,7 +20,7 @@ export default function RetryButton({id, showRetryInput, setShowRetryInput}: Pro
     };
 
     return (
-        <Button id={id} color="blue" onClick={handleRetry}>
+        <Button id={id} color="orange" onClick={handleRetry}>
             <FontAwesomeIcon icon={faTurnUp} />
             もっと盛る
         </Button>
