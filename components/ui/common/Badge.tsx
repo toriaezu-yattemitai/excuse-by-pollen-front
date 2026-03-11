@@ -9,12 +9,12 @@ type BadgeProps = {
 };
 
 const colorClass: Record<string, string> = {
-    white: "bg-gray-100 text-black hover:bg-gray-300 border border-gray-400",
-    black: "bg-gray-500 text-white hover:bg-gray-400 border border-gray-700",
-    green: "bg-green-100 text-black hover:bg-green-200 border border-green-300",
-    blue: "bg-blue-100 text-black hover:bg-blue-200 border border-blue-300",
-    red: "bg-red-100 text-black hover:bg-red-200 border border-red-300",
-    yellow: "bg-yellow-100 text-black hover:bg-yellow-200 border border-yellow-300",
+    white: "bg-gray-100 text-gray-800 border-2 border-gray-800 font-bold",
+    black: "bg-gray-800 text-white border-2 border-gray-900 font-bold",
+    green: "bg-green-100 text-green-800 border-2 border-green-700 font-bold",
+    blue: "bg-cyan-100 text-cyan-800 border-2 border-cyan-700 font-bold",
+    red: "bg-red-100 text-red-800 border-2 border-red-700 font-bold",
+    yellow: "bg-yellow-100 text-yellow-800 border-2 border-yellow-600 font-bold",
 };
 
 /**
