@@ -22,9 +22,9 @@ export default function NumberSlider({ id, onChange, min, max, step, value, disa
     return (
         <div className="px-1">
             <input type="range" id={id} min={min} max={max} step={step} value={value} onChange={onChange} disabled={disabled}
-                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500/20 disabled:opacity-50 disabled:cursor-not-allowed"
+                   className="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-200 disabled:opacity-50 disabled:cursor-not-allowed"
             />
-            <div className="flex justify-between text-xs text-gray-400 mt-2 font-medium">
+            <div className="flex justify-between text-xs text-gray-600 mt-2 font-black">
                 {marks.map((mark) => (
                 <span key={mark}>{mark}</span>
                 ))}

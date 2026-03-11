@@ -10,6 +10,6 @@ type Props = {
 
 export default function Label({ forId, children }: Props) {
     return (
-        <label htmlFor={forId} className="block text-sm font-bold text-gray-700">{children}</label>
+        <label htmlFor={forId} className="block text-sm font-black text-gray-800">{children}</label>
     );
 }

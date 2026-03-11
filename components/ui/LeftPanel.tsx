@@ -2,11 +2,13 @@
 
 import { useState } from "react";
 import Button from "./common/Button";
+import TextBox from "./common/TextBox";
 import TextBoxWithLabel from "./common/TextBoxWithLabel";
 import NumberSliderWithLabel from "./common/NumberSliderWithLabel";
 import type { GenerateRequest } from "@/types/api";
 import CheckBoxWithLabel from "./common/CheckBoxWithLabel";
 import ComboBoxWithLabel from "./common/ComboBoxWithLabel";
+import Label from "./common/Label";
 
 type Props = {
   onGenerate: (inputs: GenerateRequest["inputs"], options?: Partial<GenerateRequest["options"]>) => void,
@@ -109,7 +111,7 @@ export default function LeftPanel({ onGenerate, isLoading }: Props) {
   };
 
   return (
-    <div className="flex flex-col h-full bg-white m-1 p-6 rounded-xl border border-blue-100">
+    <div className="flex flex-col h-full bg-white m-2 p-6 rounded-xl border-[3px] border-gray-800 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
       <div className="flex-1 space-y-6 overflow-y-auto">
         {/* 相手入力 */}
         <div className="space-y-2">
@@ -120,7 +122,8 @@ export default function LeftPanel({ onGenerate, isLoading }: Props) {
 
         {/* 症状入力 */}
         <div className="space-y-2">
-          <TextBoxWithLabel id="symptom" label="症状" placeholder="例：鼻水が止まらない" value={symptom} disabled={isLoading}
+          <Label forId="symptom">症状 <span className="text-xs font-black text-white bg-pink-500 px-1.5 py-0.5 rounded-md">必須</span></Label>
+          <TextBox id="symptom" placeholder="例：鼻水が止まらない" value={symptom} disabled={isLoading}
             onChange={(e) => setSymptom(e.target.value)}
           />
         </div>
@@ -152,7 +155,7 @@ export default function LeftPanel({ onGenerate, isLoading }: Props) {
 
         {/* 位置情報取得の同意チェックボックス */}
         <div className="space-y-1 pt-2">
-          <div className="font-semibold flex items-start gap-3 p-4 bg-blue-50 rounded-lg border border-blue-100">
+          <div className="font-semibold flex items-start gap-3 p-4 bg-pink-50 rounded-xl border-2 border-pink-400">
             <CheckBoxWithLabel id="use-location" label="現在地の花粉データを取得する" checked={useLocation} disabled={isLoading} onChange={(e) => handleLocationCheckChange(e.target.checked)} />
           </div>
           {locationError ? (
@@ -166,8 +169,8 @@ export default function LeftPanel({ onGenerate, isLoading }: Props) {
       </div>
 
       {/* 生成ボタン */}
-      <div className="pt-6 mt-4 border-t border-gray-100">
-        <Button id="generate" onClick={handleSubmit} color="blue" disabled={isLoading}>
+      <div className="pt-6 mt-4 border-t-2 border-gray-200">
+        <Button id="generate" onClick={handleSubmit} color="pink" disabled={isLoading}>
           <span>{isLoading ? "生成中..." : "言い訳を生成する"}</span>
         </Button>
       </div>

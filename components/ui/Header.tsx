@@ -11,7 +11,7 @@ export default function Header() {
         background: 'repeating-linear-gradient(-45deg, #06b6d4, #06b6d4 10px, #67e8f9 10px, #67e8f9 20px)'
       }} />
       {/* タイトルバー */}
-      <div className="bg-white px-4 py-2 border-3 border-gray-800">
+      <div className="bg-white px-4 py-2 border-[3px] border-gray-800">
         <div className="flex items-center gap-2">
           {/* <span className="text-lg lg:text-2xl" aria-hidden="true">🌲💨🤧</span> */}
           <Image src="/icon.png" alt="アイコン" width={25} height={25} />
