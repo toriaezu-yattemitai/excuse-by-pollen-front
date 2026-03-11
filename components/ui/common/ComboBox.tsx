@@ -118,7 +118,7 @@ export default function ComboBox({ id, onChange, placeholder = "", value = "", d
 				onMouseDown={(e) => e.preventDefault()}
 				onClick={() => setIsOpen((prev) => !prev)}
 				disabled={disabled}
-				className="absolute inset-y-0 right-0 flex items-center px-4 text-gray-500 disabled:cursor-not-allowed"
+				className="absolute inset-y-0 right-0 flex items-center px-4 text-gray-500 cursor-pointer disabled:cursor-not-allowed"
 				aria-label="候補を表示"
 				aria-expanded={isOpen}
 				aria-controls={dropdownId}
