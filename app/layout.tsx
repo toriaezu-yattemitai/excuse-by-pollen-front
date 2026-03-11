@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "花粉エクスキューズジェネレーター",
+  title: "花粉症・限界突破エクスキューズジェネレーター",
   description: "花粉症を理由にした言い訳を生成するウェブアプリ",
 };
 
