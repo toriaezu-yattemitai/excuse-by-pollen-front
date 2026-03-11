@@ -14,7 +14,7 @@ type Props = {
 
 const DEFAULT_CLASS_NAME = "w-full px-4 py-3 focus:outline-none cursor-pointer transition-all duration-200 ease-in-out rounded-xl flex items-center gap-2 justify-center disabled:opacity-50 disabled:cursor-not-allowed";
 
-const STYLED_CLASS_NAME = `${DEFAULT_CLASS_NAME} border-2 border-gray-800 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-[3px]`;
+const STYLED_CLASS_NAME = `${DEFAULT_CLASS_NAME} border-2 border-gray-800 shadow-[0px_3px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-y-[3px]`;
 
 const colorClass: Record<string, string> = {
     none: DEFAULT_CLASS_NAME,
