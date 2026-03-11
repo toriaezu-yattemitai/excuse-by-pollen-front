@@ -15,7 +15,7 @@ export default function Header() {
         <div className="flex items-center gap-2">
           {/* <span className="text-lg lg:text-2xl" aria-hidden="true">🌲💨🤧</span> */}
           <Image src="/icon.png" alt="アイコン" width={25} height={25} />
-          <h1 className="font-black text-sm min-[350px]:text-base lg:text-xl tracking-tight">
+          <h1 className="font-black text-xs min-[400px]:text-sm min-[440px]:text-base lg:text-xl tracking-tight">
             <span className="text-gray-800">花粉症・限界突破</span>
             <span className="text-pink-500 ml-1">エクスキューズジェネレーター</span>
           </h1>
