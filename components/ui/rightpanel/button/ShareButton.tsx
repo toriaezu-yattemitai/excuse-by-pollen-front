@@ -12,7 +12,7 @@ type Props = {
  * SNS共有ボタン
  */
 export default function ShareButton({id, result}: Props) {
-    const shareText = "花粉言い訳ジェネレーターで生成した結果をシェア！ #花粉エクスキューズジェネレーター";
+    const shareText = "花粉言い訳ジェネレーターで生成した結果をシェア！ #花粉症・限界突破エクスキューズジェネレーター";
     const shareUrl = "https://excuse-by-pollen.vercel.app/share/?text=" + encodeURIComponent(result.excuse) + "&score=" + encodeURIComponent(result.score);
 
     const handleShare = () => {

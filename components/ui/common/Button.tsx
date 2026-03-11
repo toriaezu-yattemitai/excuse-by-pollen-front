@@ -6,7 +6,7 @@ import { ReactNode } from "react";
 type Props = {
     id?: string,
     onClick: () => void,
-    color?: "none" | "white" | "black" | "pink" | "green" | "blue" | "red" | "yellow",
+    color?: "none" | "white" | "black" | "pink" | "green" | "blue" | "red" | "yellow" | "orange" | string,
     disabled?: boolean,
     className?: string,
     children: ReactNode,
@@ -21,10 +21,11 @@ const colorClass: Record<string, string> = {
     white: `${STYLED_CLASS_NAME} bg-white text-gray-800 hover:bg-gray-100 font-bold`,
     black: `${STYLED_CLASS_NAME} bg-gray-600 text-white hover:bg-gray-900 font-bold`,
     pink: `${STYLED_CLASS_NAME} bg-pink-500 text-white hover:bg-pink-600 font-bold`,
-    blue: `${STYLED_CLASS_NAME} bg-amber-500 text-white hover:bg-amber-600 font-bold`,
+    blue: `${STYLED_CLASS_NAME} bg-cyan-500 text-white hover:bg-cyan-600 font-bold`,
     green: `${STYLED_CLASS_NAME} bg-green-500 text-white hover:bg-green-600 font-bold`,
     red: `${STYLED_CLASS_NAME} bg-red-500 text-white hover:bg-red-600 font-bold`,
     yellow: `${STYLED_CLASS_NAME} bg-yellow-400 text-gray-800 hover:bg-yellow-500 font-bold`,
+    orange: `${STYLED_CLASS_NAME} bg-amber-500 text-white hover:bg-amber-600 font-bold`,
 };
 
 export default function Button({ id, onClick, color = "none", disabled = false, className, children }: Props) {
