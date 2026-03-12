@@ -29,6 +29,19 @@ export async function GET(request: NextRequest) {
 
   const circumference = 2 * Math.PI * 54;
   const strokeDashoffset = circumference - (progress / 360) * circumference;
+
+  const excuseLength = excuse.length;
+
+  const excuseFontSize =
+    excuseLength > 350 ? 24 :
+    excuseLength > 300 ? 26 :
+    excuseLength > 270 ? 28 :
+    excuseLength > 240 ? 30 :
+    excuseLength > 220 ? 32 :
+    excuseLength > 180 ? 34 : 36;
+
+  const displayExcuse =
+  excuseLength > 420 ? excuse.slice(0, 420) + "..." : excuse;
   
   try {
     return new ImageResponse(
@@ -36,28 +49,22 @@ export async function GET(request: NextRequest) {
         <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%', backgroundColor: 'transparent', 
           padding: '40px', fontFamily: 'system-ui, sans-serif' }}
         >
-          <div style={{ display: 'flex', flexDirection: 'column', flex: 1, backgroundColor: 'white', border: '1px solid #e5e7eb', 
-            borderRadius: '16px', padding: '32px 40px', margin: '8px' }}
+          <div style={{ display: 'flex', flexDirection: 'column', flex: 1, backgroundColor: 'white', border: '4px solid #1e2939', 
+            borderRadius: '32px', padding: '32px 40px', margin: '8px' }}
           >
-            <div style={{ flex: 1, fontSize: 36, color: '#374151', lineHeight: 1.5, display: 'flex', alignItems: 'flex-start' }}>
-              {excuse}
+            <div style={{ flex: 1, fontSize: excuseFontSize, color: '#374151', lineHeight: 1.5, display: 'flex', alignItems: 'flex-start' }}>
+              {displayExcuse}
             </div>
 
-            <div style={{ height: '1px', backgroundColor: '#e5e7eb', margin: '12px 0', display: 'flex' }} />
+            <hr style={{ border: 'none', borderTop: '3px dashed #666', margin: '12px 0' }} />
 
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}
-            >
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <div style={{ fontSize: 64, display: 'flex' }}>
                 {getScoreEmoji(score)}
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <div style={{ fontSize: 20, fontWeight: 'bold', color: '#6b7280', letterSpacing: '0.05em', display: 'flex' }} >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '4px' }}>
+                <div style={{ fontSize: 30, fontWeight: 'bold', color: '#6b7280', letterSpacing: '0.05em', display: 'flex' }} >
                   説得力スコア
                 </div>
 
@@ -70,6 +77,10 @@ export async function GET(request: NextRequest) {
                     <div style={{ fontSize: 36, fontWeight: 900, color: '#4b5563', display: 'flex' }}>
                       {score}
                     </div>
+                  </div>
+
+                  <div style={{ position: 'absolute', right: "-30px", bottom: '-30px', fontSize: 16, fontWeight: 'bold', color: '#6b7280', display: 'flex' }} >
+                    花粉症・限界突破エクスキューズジェネレーター
                   </div>
                 </div>
               </div>

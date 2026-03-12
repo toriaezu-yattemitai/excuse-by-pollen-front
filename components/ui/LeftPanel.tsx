@@ -110,7 +110,7 @@ export default function LeftPanel({ onGenerate, isLoading }: Props) {
 
   return (
     <div className="flex flex-col h-full bg-white m-2 p-6 rounded-xl border-[3px] border-gray-800 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-      <div className="flex-1 space-y-6 overflow-y-auto">
+      <div className="flex-1 space-y-5 overflow-y-auto">
         {/* 症状入力 */}
         <div className="space-y-2">
           <TextBoxWithLabel id="symptom"
@@ -142,7 +142,7 @@ export default function LeftPanel({ onGenerate, isLoading }: Props) {
         </div>
 
         {/* 花粉症レベル */}
-        <div className="space-y-4 pt-2">
+        <div className="space-y-2">
           <NumberSliderWithLabel id="level" label="花粉症レベル" min={1} max={5} step={1} value={level} disabled={isLoading}
             onChange={(e) => setLevel(parseInt(e.target.value))}
           />
@@ -161,9 +161,9 @@ export default function LeftPanel({ onGenerate, isLoading }: Props) {
         </div>
 
         {/* 位置情報取得の同意チェックボックス */}
-        <div className="space-y-1 pt-2">
-          <div className="font-semibold flex items-start gap-3 p-4 bg-pink-50 rounded-xl border-2 border-pink-400">
-            <CheckBoxWithLabel id="use-location" label="現在地の花粉データを取得する" checked={useLocation} disabled={isLoading} onChange={(e) => handleLocationCheckChange(e.target.checked)} />
+        <div className="space-y-1">
+          <div className="font-semibold flex items-start gap-3 p-3 bg-yellow-50 rounded-xl border-2 border-yellow-400">
+            <CheckBoxWithLabel id="use-location" label="現在地の花粉データを利用する" checked={useLocation} disabled={isLoading} onChange={(e) => handleLocationCheckChange(e.target.checked)} />
           </div>
           {locationError ? (
             <span className="text-xs text-red-500">{locationError}</span>
@@ -176,7 +176,7 @@ export default function LeftPanel({ onGenerate, isLoading }: Props) {
       </div>
 
       {/* 生成ボタン */}
-      <div className="pt-6 mt-4 border-t-2 border-gray-200">
+      <div className="pt-2">
         <Button id="generate" onClick={handleSubmit} color="pink" disabled={isLoading}>
           <span>{isLoading ? "生成中..." : "言い訳を生成する"}</span>
         </Button>

@@ -18,7 +18,7 @@ export default function ActionButtons({onRetry, result}: Props) {
     const [showRetryInput, setShowRetryInput] = useState(false);
 
     return (
-        <div className="pt-4 mt-4 border-t-2 border-gray-200">
+        <div className="pt-2">
             <div className={"flex flex-col min-[380px]:flex-row gap-2"}>
                 <RetryButton id="retry-button" showRetryInput={showRetryInput} setShowRetryInput={setShowRetryInput}/>
                 <ShareButton id="share-button" result={result} />
