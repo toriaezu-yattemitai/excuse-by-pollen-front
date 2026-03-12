@@ -41,16 +41,16 @@ export default function ShareContent() {
     <div className="min-h-screen flex flex-col">
       <Header />
       <div className="flex-1 container mx-auto px-4 pt-3 pb-4 lg:px-6 lg:pt-4 lg:pb-6 flex items-center justify-center">
-        <div className="w-full max-w-xl">
+        <div className="w-full max-w-xl rounded-xl border-[3px] border-gray-800 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-white p-6">
           {isLoading ? (
             <LoadingSection msg={"データを取得中..."} />
           ) : error ? (
             <ErrorSection error={error} onResend={() => id && handleGetExcuse(id)} />
           ) : (
-            <div className="bg-white rounded-xl border border-amber-100 p-6">
+            <>
               <p className="text-xs font-semibold text-amber-500 tracking-widest uppercase mb-4">花粉症・限界突破エクスキューズジェネレーター</p>
               <ResultCard result={{ excuse: text, score: score }} />
-            </div>
+            </>
           )}
           <div className="pt-4 mt-2">
             <TopButton />

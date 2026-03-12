@@ -24,9 +24,10 @@ export default function ResultCard({ result }: Props) {
         <span className="float-right ml-2">
           <TtsButton result={result} />
         </span>
-
       </span>
+
       <hr className="my-3" />
+      
       <div className="flex items-center justify-between">
         <span className="text-2xl">{getScoreEmoji(result.score)}</span>
         <div className="flex items-center gap-3">

@@ -26,6 +26,8 @@ body {
 }
 
 hr {
-  color: #E6E9EE;
-  border-color: #E6E9EE;
+  border-top: 2px dashed #666;
+  border-right: none;
+  border-bottom: none;
+  border-left: none;
 }
