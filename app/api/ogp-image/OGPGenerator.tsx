@@ -39,8 +39,8 @@ export class OGPGenerator {
 		if (excuseLength > 300) return 26;
 		if (excuseLength > 270) return 28;
 		if (excuseLength > 240) return 30;
-		if (excuseLength > 220) return 32;
-		if (excuseLength > 180) return 34;
+		if (excuseLength > 200) return 32;
+		if (excuseLength > 160) return 34;
 		return 36;
 	}
 
