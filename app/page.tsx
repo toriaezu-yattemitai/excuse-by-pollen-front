@@ -17,7 +17,7 @@ export default function Home() {
         - ケータイ: 上下レイアウト
       */}
       <main className="flex-1 container mx-auto px-4 pt-3 pb-4 lg:px-6 lg:pt-4 lg:pb-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-full">
+        <div className="min-[1020px]:grid min-[1020px]:grid-cols-1 lg:grid-cols-2 gap-6 h-full">
           {/* 左パネル */}
           <div className="h-full">
             <LeftPanel onGenerate={handleGenerate} isLoading={isLoading} />
