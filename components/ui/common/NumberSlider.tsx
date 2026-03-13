@@ -26,7 +26,11 @@ export default function NumberSlider({ id, onChange, min, max, step, value, disa
 
     return (
         <div className="p-2">
-            <div className="group relative h-3 flex items-center rounded-lg">
+            <div
+                className={`group relative h-3 flex items-center rounded-lg ${
+                    disabled ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+            >
                 <div className="absolute inset-x-0 h-3 bg-gray-200 rounded-lg mx-1" />
                 <div
                     className={`absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 shadow-sm transition-[left,background-color,box-shadow] duration-200 ease-out ${
