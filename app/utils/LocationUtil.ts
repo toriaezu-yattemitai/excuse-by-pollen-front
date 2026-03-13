@@ -3,6 +3,12 @@
  */
 const getCurrentLocation = (onError?: (msg: string) => void): Promise<{ latitude: number; longitude: number } | null> => {
   return new Promise((resolve) => {
+    if (typeof navigator === "undefined") {
+      onError?.("ブラウザ環境ではないため位置情報を取得できません。");
+      resolve(null);
+      return;
+    }
+
     if (!navigator.geolocation) {
       onError?.("お使いのブラウザは位置情報に対応していません。");
       resolve(null);
