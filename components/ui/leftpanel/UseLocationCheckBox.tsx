@@ -17,8 +17,12 @@ export default function UseLocationCheckBox({ useLocation, setUseLocation, isLoa
     const handleChange = async (checked: boolean) => {
         if (checked) {
             // チェックされたら、位置情報の許可を求める
+            // 新しい取得処理開始時に過去のエラーをクリアする
+            setLocationError(null);
             const location = await getCurrentLocation(setLocationError);
             if (location) {
+                // 位置情報取得が成功した場合もエラーをクリアする
+                setLocationError(null);
                 setUseLocation(true);
                 return;
             }
